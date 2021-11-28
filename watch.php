@@ -1,4 +1,5 @@
 <?php
+// watch.php for watching videos
 include("includes/youtubei/createRequest.php");
 if(!isset($_GET['v']))
 {
@@ -23,7 +24,9 @@ else
         "videoAuthor" => $mainResponseObject->microformat->playerMicroformatRenderer->ownerChannelName,
         "videoUploadDate" => $mainResponseObject->microformat->playerMicroformatRenderer->uploadDate
     );
+    
     $videoSrc = $mainResponseObject->streamingData->formats[0]->url;
+     
 
 ?>
 <!DOCTYPE html>
@@ -32,7 +35,7 @@ else
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>YouTube - Your Digital Video Repository</title>
     <script type="text/javascript" src="yts/jsbin/flashobject.js"></script>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="yts/imgbin/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link href="yts/cssbin/styles.css" rel="stylesheet" type="text/css">
     <link rel="alternate" type="application/rss+xml" title="YouTube " "="" recently="" added="" videos="" [rss]"="" href="http://www.youtube.com/rss/global/recently_added.rss">
@@ -218,9 +221,7 @@ else
 
                                         <div style="text-align: center; padding-bottom: 10px;">
                                             <div id="flashcontent">
-                                                <div style="padding: 20px; font-size:14px; font-weight: bold;">
-                                                    <video src="<?php echo $videoSrc; ?>" class="videoContainer funny-video-container">
-                                                </div>
+                                                <video controls src="<?php echo $videoSrc;?>" class="video-player googlevideo-player" style="width: 427px; margin:center;">
                                             </div>
                                         </div>
 
@@ -340,9 +341,9 @@ else
                                                                 <tbody>
                                                                     <tr valign="top">
                                                                         <td>
-                                                                            <div class="moduleFrameBarTitle">Tag // aerobatic sukhoi airplane stunt trick (71)</div>
+                                                                            <div class="moduleFrameBarTitle">Tag // <?php echo htmlspecialchars($videoDetails['videoTitle']);?></div>
                                                                         </td>
-                                                                        <td align="right">
+                                                                        <td style="text-align:right;">
                                                                             <div style="font-size: 11px; margin-right: 5px;"><a href="results.php?&amp;search=aerobatic+sukhoi+airplane+stunt+trick" target="_parent">See more Results</a></div>
                                                                         </td>
                                                                     </tr>
@@ -373,22 +374,6 @@ else
                                                     <td><img src="img/pixel.gif" width="5" height="1"></td>
                                                     <td width="270">
                                                         <div style="padding: 5px;">
-                                                            <script type="text/javascript">
-                                                                <!--
-                                                                google_ad_client = "pub-6219811747049371";
-                                                                google_ad_width = 250;
-                                                                google_ad_height = 250;
-                                                                google_ad_format = "250x250_as";
-                                                                google_ad_type = "text";
-                                                                google_ad_channel = "";
-                                                                google_color_border = "FFFFCC";
-                                                                google_color_bg = "FFFFCC";
-                                                                google_color_link = "0033CC";
-                                                                google_color_url = "0033CC";
-                                                                google_color_text = "444444";
-                                                                //
-                                                                -->
-                                                            </script>
                                                             <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
                                                             </script>
                                                         </div>
