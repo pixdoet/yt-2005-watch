@@ -24,7 +24,18 @@ else
         "videoAuthor" => $mainResponseObject->microformat->playerMicroformatRenderer->ownerChannelName,
         "videoUploadDate" => $mainResponseObject->microformat->playerMicroformatRenderer->uploadDate
     );
-    
+    // get video tags(annoying)
+    $tagarr = $mainResponseObject->videoDetails->keywords;
+    $tagcount = sizeof($tagarr);
+    if($tagcount >= 1)
+    {
+        $tags = $tagarr;
+    }
+    else
+    {
+        $tags = array("None");
+    }
+    // video source file
     $videoSrc = $mainResponseObject->streamingData->formats[0]->url;
      
 
@@ -36,7 +47,7 @@ else
     <title>YouTube - Your Digital Video Repository</title>
     <script type="text/javascript" src="yts/jsbin/flashobject.js"></script>
     <link rel="icon" href="yts/imgbin/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="yts/imgbin/favicon.ico" type="image/x-icon">
     <link href="yts/cssbin/styles.css" rel="stylesheet" type="text/css">
     <link rel="alternate" type="application/rss+xml" title="YouTube " "="" recently="" added="" videos="" [rss]"="" href="http://www.youtube.com/rss/global/recently_added.rss">
 </head>
@@ -113,11 +124,11 @@ else
                         <tbody>
                             <tr>
                                 <td><img src="yts/imgbin/box_login_tl.gif" width="5" height="5"></td>
-                                <td><img src="img/pixel.gif" width="1" height="5"></td>
+                                <td><img src="yts/imgbin/pixel.gif" width="1" height="5"></td>
                                 <td><img src="yts/imgbin/box_login_tr.gif" width="5" height="5"></td>
                             </tr>
                             <tr>
-                                <td><img src="img/pixel.gif" width="5" height="1"></td>
+                                <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
 
                                 <td width="100%">
 
@@ -147,11 +158,11 @@ else
 
                                 </td>
 
-                                <td><img src="img/pixel.gif" width="5" height="1"></td>
+                                <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
                             </tr>
                             <tr>
                                 <td><img src="yts/imgbin/box_login_bl.gif" width="5" height="5"></td>
-                                <td><img src="img/pixel.gif" width="1" height="5"></td>
+                                <td><img src="yts/imgbin/pixel.gif" width="1" height="5"></td>
                                 <td><img src="yts/imgbin/box_login_br.gif" width="5" height="5"></td>
                             </tr>
                         </tbody>
@@ -241,7 +252,12 @@ else
                                                         <div class="watchDescription"><?php echo $videoDetails["videoDescription"];?><div class="watchAdded" style="margin-top: 5px;">
                                                             </div>
                                                         </div>
-                                                        <div class="watchTags">Tags // <a href="results.php?search=aerobatic">aerobatic</a> : <a href="results.php?search=sukhoi">sukhoi</a> : <a href="results.php?search=airplane">airplane</a> : <a href="results.php?search=stunt">stunt</a> : <a href="results.php?search=trick">trick</a> : </div>
+                                                        <div class="watchTags">Tags // 
+                                                        <?php
+                                                            for($i = 0;$i < $tagcount; $i++)
+                                                            {?>
+                                                                <a href="//youtube.com/results?search_query=<?php echo $tags[$i];?>"><?php echo $tags[$i];?></a> :
+                                                            <?php }?> </div>
 
 
                                                         <div class="watchAdded">
@@ -264,12 +280,12 @@ else
                                                 <tbody>
                                                     <tr>
                                                         <td><img src="yts/imgbin/box_login_tl.gif" width="5" height="5"></td>
-                                                        <td width="100%"><img src="img/pixel.gif" width="1" height="5"></td>
+                                                        <td width="100%"><img src="yts/imgbin/pixel.gif" width="1" height="5"></td>
                                                         <td><img src="yts/imgbin/box_login_tr.gif" width="5" height="5"></td>
                                                     </tr>
                                                     <tr>
                                                         <form name="linkForm" id="linkForm"></form>
-                                                        <td><img src="img/pixel.gif" width="5" height="1"></td>
+                                                        <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
                                                         <td align="center">
 
                                                             <div style="font-size: 11px; font-weight: bold; color: #CC6600; padding: 5px 0px 5px 0px;">Share this video! Copy and paste this link:</div>
@@ -278,12 +294,12 @@ else
                                                             </div>
 
                                                         </td>
-                                                        <td><img src="img/pixel.gif" width="5" height="1"></td>
+                                                        <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
 
                                                     </tr>
                                                     <tr>
                                                         <td><img src="yts/imgbin/box_login_bl.gif" width="5" height="5"></td>
-                                                        <td><img src="img/pixel.gif" width="1" height="5"></td>
+                                                        <td><img src="yts/imgbin/pixel.gif" width="1" height="5"></td>
                                                         <td><img src="yts/imgbin/box_login_br.gif" width="5" height="5"></td>
                                                     </tr>
                                                 </tbody>
@@ -330,11 +346,11 @@ else
                                             <tbody>
                                                 <tr>
                                                     <td><img src="yts/imgbin/box_login_tl.gif" width="5" height="5"></td>
-                                                    <td><img src="img/pixel.gif" width="1" height="5"></td>
+                                                    <td><img src="yts/imgbin/pixel.gif" width="1" height="5"></td>
                                                     <td><img src="yts/imgbin/box_login_tr.gif" width="5" height="5"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><img src="img/pixel.gif" width="5" height="1"></td>
+                                                    <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
                                                     <td width="270">
                                                         <div class="moduleTitleBar">
                                                             <table width="270" cellspacing="0" cellpadding="0" border="0">
@@ -353,11 +369,11 @@ else
 
 
                                                     </td>
-                                                    <td><img src="img/pixel.gif" width="5" height="1"></td>
+                                                    <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
                                                 </tr>
                                                 <tr>
                                                     <td><img src="yts/imgbin/box_login_bl.gif" width="5" height="5"></td>
-                                                    <td><img src="img/pixel.gif" width="1" height="5"></td>
+                                                    <td><img src="yts/imgbin/pixel.gif" width="1" height="5"></td>
                                                     <td><img src="yts/imgbin/box_login_br.gif" width="5" height="5"></td>
                                                 </tr>
                                             </tbody>
@@ -367,22 +383,22 @@ else
                                             <tbody>
                                                 <tr>
                                                     <td><img src="yts/imgbin/box_login_tl.gif" width="5" height="5"></td>
-                                                    <td><img src="img/pixel.gif" width="1" height="5"></td>
+                                                    <td><img src="yts/imgbin/pixel.gif" width="1" height="5"></td>
                                                     <td><img src="yts/imgbin/box_login_tr.gif" width="5" height="5"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><img src="img/pixel.gif" width="5" height="1"></td>
+                                                    <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
                                                     <td width="270">
                                                         <div style="padding: 5px;">
                                                             <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
                                                             </script>
                                                         </div>
                                                     </td>
-                                                    <td><img src="img/pixel.gif" width="5" height="1"></td>
+                                                    <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
                                                 </tr>
                                                 <tr>
                                                     <td><img src="yts/imgbin/box_login_bl.gif" width="5" height="5"></td>
-                                                    <td><img src="img/pixel.gif" width="1" height="5"></td>
+                                                    <td><img src="yts/imgbin/pixel.gif" width="1" height="5"></td>
                                                     <td><img src="yts/imgbin/box_login_br.gif" width="5" height="5"></td>
                                                 </tr>
                                             </tbody>
@@ -482,7 +498,7 @@ else
         <tbody>
             <tr>
                 <td valign="center" align="center"><span class="footer"><a href="whats_new.php">What's New</a> | <a href="about.php">About Us</a> | <a href="help.php">Help</a> | <a href="terms.php">Terms of Use</a> | <a href="privacy.php">Privacy Policy</a>
-                        <br><br>Copyright © 2005 YouTube, LLC™. Frontend made by <a href="https://github.com/pixdoet"> Ian </a> | <a href="rss/global/recently_added.rss"><img src="http://www.youtube.com/img/rss.gif" style="vertical-align: text-top;" width="36" height="14" border="0"></a></span></td>
+                        <br><br>Copyright © 2005 YouTube, LLC™. Frontend made by <a href="https://github.com/pixdoet"> Ian </a> | <a href="rss/global/recently_added.rss"><img src="yts/imgbin/rss.gif" style="vertical-align: text-top;" width="36" height="14" border="0"></a></span></td>
             </tr>
         </tbody>
     </table>
