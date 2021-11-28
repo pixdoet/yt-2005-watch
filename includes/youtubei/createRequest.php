@@ -374,7 +374,7 @@ function requestPlayer($videoId)
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // so that the 1 doesnt show
   curl_setopt($ch, CURLOPT_COOKIEFILE, "cookies.txt");
   curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    "Authorization: SAPISIDHASH 1638018765_8b83de0d73426d1a04a311f67961ca99a3dbb5a4", //. $sapisidhash,
+    "Authorization: ", //sapisidhash,
     "Content-Type: application/json",
     // "Referer: https://youtube.com/watch?v=" . $videoId,
     "X-Goog-AuthUser: 0",
