@@ -13,7 +13,7 @@ if (!isset($_GET['v'])) {
     $videoDetails = array(
         "videoTitle" => $mainResponseObject->videoDetails->title,
 
-        "videoDescription" => "None",
+        "videoDescription" => "<i>None</i>",
         // "videoTags" => array(
         // $mainResponseObject->keywords
         // ),
