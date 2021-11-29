@@ -21,7 +21,7 @@ function requestBrowse($brid)
     in the documentation that's horribly out of date and probably not going 
     to exist.
   */
-  include("../config.inc.php");
+  include("includes/config.inc.php");
   $req_arr = json_encode(
     array(
       'context' =>
@@ -181,7 +181,7 @@ function requestBrowse($brid)
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // so that the 1 doesnt show
   curl_setopt($ch, CURLOPT_COOKIEFILE, "../../cookies.txt");
   curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    "Authorization: " . $sapisidhash,
+    "Authorization: ",
     "Content-Type: application/json",
     "X-Goog-AuthUser: 0",
     "X-Origin: https://www.youtube.com"
@@ -192,7 +192,7 @@ function requestBrowse($brid)
   curl_setopt($ch, CURLOPT_URL, "https://www.youtube.com/youtubei/v1/browse?key=AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8");
 
   $result = curl_exec($ch);
-  return json_decode($result);
+  return $result;
 }
 
 // endpoint: /youtubei/v1/player
