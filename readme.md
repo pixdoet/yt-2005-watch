@@ -7,3 +7,6 @@ A YouTube frontend written with the YouTubeI, otherwise more commonly known as t
 
 # Credits  
 Idk man  
+
+# License  
+Apache 2.0
