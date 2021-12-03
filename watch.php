@@ -22,7 +22,7 @@ if (!isset($_GET['v'])) {
         "videoAuthor" => $mainResponseObject->microformat->playerMicroformatRenderer->ownerChannelName,
         "videoUploadDate" => $mainResponseObject->microformat->playerMicroformatRenderer->uploadDate
     );
-    
+
     // get video tags(annoying)
     if (isset($mainResponseObject->videoDetails->keywords)) {
         $tagarr = $mainResponseObject->videoDetails->keywords;
@@ -35,11 +35,10 @@ if (!isset($_GET['v'])) {
     } else {
         $tagcount = 0;
     }
-    if (isset($mainResponseObject->microformat->playerMicroformatRenderer->description->simpleText))
-    {
+    if (isset($mainResponseObject->microformat->playerMicroformatRenderer->description->simpleText)) {
         $videoDetails['videoDescription'] = $mainResponseObject->microformat->playerMicroformatRenderer->description->simpleText;
     }
-    
+
 
     // video source file
     $videoSrc = $mainResponseObject->streamingData->formats[0]->url;
@@ -108,13 +107,14 @@ if (!isset($_GET['v'])) {
                                         <table cellspacing="0" cellpadding="2" border="0">
                                             <tbody>
                                                 <tr>
-                                                    <form method="GET" action="results.php"></form>
-                                                    <td>
-                                                        <input type="text" value="" name="search" size="30" maxlength="128" style="color:#ff3333; font-size: 14px; padding: 2px;">
-                                                    </td>
-                                                    <td>
-                                                        <input type="submit" value="Search Videos">
-                                                    </td>
+                                                    <form method="GET" action="results.php">
+                                                        <td>
+                                                            <input type="text" value="" name="search" size="30" maxlength="128" style="color:#ff3333; font-size: 14px; padding: 2px;">
+                                                        </td>
+                                                        <td>
+                                                            <input type="submit" value="Search Videos">
+                                                        </td>
+                                                    </form>
 
                                                 </tr>
                                             </tbody>
@@ -268,7 +268,7 @@ if (!isset($_GET['v'])) {
 
 
                                                             <div class="watchAdded">
-                                                                Added: <?php $videoDetails["videoUploadDate"]; ?> by <a href="profile.php?user=<?php echo $videoDetails["videoAuthor"]; ?>"><?php echo $videoDetails["videoAuthor"]; ?></a> //
+                                                                Added: <?php echo $videoDetails["videoUploadDate"]; ?> by <a href="profile.php?user=<?php echo $videoDetails["videoAuthor"]; ?>"><?php echo $videoDetails["videoAuthor"]; ?></a> //
                                                                 <a href="profile_videos.php?user=<?php echo $videoDetails["videoAuthor"]; ?>">Videos</a> (64) | <a href="profile_favorites.php?user=<?php echo $videoDetails["videoAuthor"]; ?>">Favorites</a> (0) | <a href="profile_friends.php?user=<?php echo $videoDetails["videoAuthor"]; ?>">Friends</a> (16)
                                                             </div>
 
@@ -417,7 +417,7 @@ if (!isset($_GET['v'])) {
                                             ?>
                                                 <div style="padding: 0px 0px 5px 0px; color: #999;">» <a href="//youtube.com/results?search_query=<?php echo $tags[$i]; ?>" target="_blank"><?php echo $tags[$i]; ?></a></div>
                                             <?php
-                                            } 
+                                            }
                                             ?>
 
                                         </td>
