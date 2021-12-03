@@ -20,6 +20,7 @@ function homepageFeed($number)
 }
 $test = homepageFeed(1);
 echo $test->richItemRenderer->videoRenderer->videoId;
+header("Location: results.php?search=home");
 ?>
 <!DOCTYPE html>
 <html>
