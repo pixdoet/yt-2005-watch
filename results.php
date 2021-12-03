@@ -243,7 +243,7 @@ if (!isset($_GET['search'])) {
                             <tbody>
                                 <tr>
                                     <form name="searchForm" id="searchForm" method="get" action="results.php">
-                                        <td style="padding-right: 5px;"><input tabindex="1" type="text" name="search" maxlength="128" style="color:#ff3333; font-size: 12px; width: 300px;"></td>
+                                        <td style="padding-right: 5px;"><input tabindex="1" type="text" name="search" maxlength="128" value="<?php echo htmlspecialchars($_GET['search']);?>"style="color:#ff3333; font-size: 12px; width: 300px;"></td>
                                         <td>
                                             <input type="submit" name="search_videos" value="Search Videos">
                                     </form>
