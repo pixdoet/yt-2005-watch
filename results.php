@@ -310,11 +310,12 @@ if (!isset($_GET['search'])) {
                             // declare vars
                             // the array format used in watch.php is too annoying
                             // so everything is it's own variable now! yay!
-
-                            $videoId = $items[$i]->videoRenderer->videoId;
-                            $videoTitle = $items[$i]->videoRenderer->title->runs[0]->text;
-                            //$videoDescription = $items[$]->videoRenderer->
-                            $videoThumbnail = $items[$i]->videoRenderer->thumbnail->thumbnails[0]->url;
+                            if (isset($items[$i]->videoRenderer)) {
+                                $videoId = $items[$i]->videoRenderer->videoId;
+                                $videoTitle = $items[$i]->videoRenderer->title->runs[0]->text;
+                                //$videoDescription = $items[$]->videoRenderer->
+                                $videoThumbnail = $items[$i]->videoRenderer->thumbnail->thumbnails[0]->url;
+                            }
                         ?>
                             <div class="moduleEntry">
                                 <table width="100%" cellspacing="0" cellpadding="0" border="0">
