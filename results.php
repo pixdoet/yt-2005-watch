@@ -4,7 +4,7 @@ include("includes/youtubei/createRequest.php");
 include("includes/config.inc.php");
 
 if (!isset($_GET['search'])) {
-    echo "Please enter a valid search query";
+    include("includes/noquery.php");
 } else {
     $query = $_GET['search'];
     $mainResponseObject = json_decode(requestSearch($query));
