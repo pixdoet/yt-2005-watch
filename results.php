@@ -1,6 +1,5 @@
 <?php
 
-
 include("includes/youtubei/createRequest.php");
 include("includes/config.inc.php");
 
@@ -21,7 +20,7 @@ if (!isset($_GET['search'])) {
         }
         // we wanna find out how many results are there
         // so that we can prevent looping too much if there's
-        // less than 5 results
+        // less than desired amount of results
         if (sizeof($items) <= $resultsCount) {
             $loopRounds = sizeof($items);
         } else {
@@ -196,9 +195,9 @@ if (!isset($_GET['search'])) {
                         <table style="margin-bottom: 10px;" width="800" cellspacing="0" cellpadding="0" border="0" bgcolor="#DDDDDD" align="center">
                             <tbody>
                                 <tr>
-                                    <td><img src="yts/imgbin//box_login_tl.gif" width="5" height="5"></td>
-                                    <td><img src="yts/imgbin//pixel.gif" width="1" height="5"></td>
-                                    <td><img src="yts/imgbin//box_login_tr.gif" width="5" height="5"></td>
+                                    <td><img src="yts/imgbin/box_login_tl.gif" width="5" height="5"></td>
+                                    <td><img src="yts/imgbin/pixel.gif" width="1" height="5"></td>
+                                    <td><img src="yts/imgbin/box_login_tr.gif" width="5" height="5"></td>
                                 </tr>
                                 <tr>
                                     <td><img src="yts/imgbin//pixel.gif" width="5" height="1"></td>
@@ -245,7 +244,7 @@ if (!isset($_GET['search'])) {
                             <tbody>
                                 <tr>
                                     <form name="searchForm" id="searchForm" method="get" action="results.php">
-                                        <td style="padding-right: 5px;"><input tabindex="1" type="text" name="search" maxlength="128" value="<?php echo htmlspecialchars($_GET['search']);?>"style="color:#ff3333; font-size: 12px; width: 300px;"></td>
+                                        <td style="padding-right: 5px;"><input tabindex="1" type="text" name="search" maxlength="128" value="<?php echo htmlspecialchars($_GET['search']); ?>" style="color:#ff3333; font-size: 12px; width: 300px;"></td>
                                         <td>
                                             <input type="submit" name="search_videos" value="Search Videos">
                                     </form>
@@ -258,42 +257,42 @@ if (!isset($_GET['search'])) {
 
         <div style="color: #333; margin-bottom: 10px;">Related Tags:
 
-            <a href="/results.php?search=crazy">crazy</a>
-            <a href="/results.php?search=is">is</a>
-            <a href="/results.php?search=YOUTUBE">YOUTUBE</a>
-            <a href="/results.php?search=catsta">catsta</a>
-            <a href="/results.php?search=victim">victim</a>
-            <a href="/results.php?search=catlin">catlin</a>
-            <a href="/results.php?search=technology">technology</a>
-            <a href="/results.php?search=callforhelp">callforhelp</a>
-            <a href="/results.php?search=what">what</a>
-            <a href="/results.php?search=tube">tube</a>
-            <a href="/results.php?search=winner">winner</a>
-            <a href="/results.php?search=YouTube">YouTube</a>
-            <a href="/results.php?search=hotornot">hotornot</a>
-            <a href="/results.php?search=plugged">plugged</a>
-            <a href="/results.php?search=experiment">experiment</a>
-            <a href="/results.php?search=FAN">FAN</a>
-            <a href="/results.php?search=party">party</a>
-            <a href="/results.php?search=cool">cool</a>
-            <a href="/results.php?search=friend">friend</a>
-            <a href="/results.php?search=trippy">trippy</a>
-            <a href="/results.php?search=fun">fun</a>
-            <a href="/results.php?search=euterpe">euterpe</a>
-            <a href="/results.php?search=sexy">sexy</a>
-            <a href="/results.php?search=editing">editing</a>
-            <a href="/results.php?search=the">the</a>
-            <a href="/results.php?search=psychedelic">psychedelic</a>
-            <a href="/results.php?search=massier">massier</a>
-            <a href="/results.php?search=on">on</a>
-            <a href="/results.php?search=television">television</a>
-            <a href="/results.php?search=youtube">youtube</a>
-            <a href="/results.php?search=professorsmile">professorsmile</a>
-            <a href="/results.php?search=ADDICTED">ADDICTED</a>
-            <a href="/results.php?search=Japan">Japan</a>
-            <a href="/results.php?search=YES">YES</a>
-            <a href="/results.php?search=ambermacarthur">ambermacarthur</a>
-            <a href="/results.php?search=radio">radio</a>
+            <a href="results.php?search=crazy">crazy</a>
+            <a href="results.php?search=is">is</a>
+            <a href="results.php?search=YOUTUBE">YOUTUBE</a>
+            <a href="results.php?search=catsta">catsta</a>
+            <a href="results.php?search=victim">victim</a>
+            <a href="results.php?search=catlin">catlin</a>
+            <a href="results.php?search=technology">technology</a>
+            <a href="results.php?search=callforhelp">callforhelp</a>
+            <a href="results.php?search=what">what</a>
+            <a href="results.php?search=tube">tube</a>
+            <a href="results.php?search=winner">winner</a>
+            <a href="results.php?search=YouTube">YouTube</a>
+            <a href="results.php?search=hotornot">hotornot</a>
+            <a href="results.php?search=plugged">plugged</a>
+            <a href="results.php?search=experiment">experiment</a>
+            <a href="results.php?search=FAN">FAN</a>
+            <a href="results.php?search=party">party</a>
+            <a href="results.php?search=cool">cool</a>
+            <a href="results.php?search=friend">friend</a>
+            <a href="results.php?search=trippy">trippy</a>
+            <a href="results.php?search=fun">fun</a>
+            <a href="results.php?search=euterpe">euterpe</a>
+            <a href="results.php?search=sexy">sexy</a>
+            <a href="results.php?search=editing">editing</a>
+            <a href="results.php?search=the">the</a>
+            <a href="results.php?search=psychedelic">psychedelic</a>
+            <a href="results.php?search=massier">massier</a>
+            <a href="results.php?search=on">on</a>
+            <a href="results.php?search=television">television</a>
+            <a href="results.php?search=youtube">youtube</a>
+            <a href="results.php?search=professorsmile">professorsmile</a>
+            <a href="results.php?search=ADDICTED">ADDICTED</a>
+            <a href="results.php?search=Japan">Japan</a>
+            <a href="results.php?search=YES">YES</a>
+            <a href="results.php?search=ambermacarthur">ambermacarthur</a>
+            <a href="results.php?search=radio">radio</a>
 
         </div>
 
@@ -342,7 +341,7 @@ if (!isset($_GET['search'])) {
                                                 </div>
                                                 <div class="moduleEntryDetails">Channels // <a href="/channels_portal.php?c=3">Education &amp; Instructional</a> : <a href="/channels_portal.php?c=8">Hobbies &amp; Interests</a> : <a href="/channels_portal.php?c=9">Humor</a>
                                                 </div>
-                                                <div class="moduleEntryDetails">Added: 1 week ago by <a href="/profile?user=<?php echo $videoAuthor?>"><?php echo $videoAuthor;?></a></div>
+                                                <div class="moduleEntryDetails">Added: 1 week ago by <a href="/profile?user=<?php echo $videoAuthor ?>"><?php echo $videoAuthor; ?></a></div>
                                                 <div class="moduleEntryDetails">Runtime: 01:57 | Views: 7 | Comments: 0</div>
 
                                             </td>
