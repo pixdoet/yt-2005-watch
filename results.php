@@ -29,7 +29,7 @@ if (!isset($_GET['search'])) {
         // ok we done here now go to the HTML section below...
 
     } else {
-        echo "Shit no results found or result list empty";
+        require('noresults.php');
     }
 
 ?>
@@ -233,13 +233,6 @@ if (!isset($_GET['search'])) {
                                 </tr>
                             </tbody>
                         </table>
-
-
-
-
-
-
-
                         <table style="margin-bottom: 10px;" cellspacing="0" cellpadding="0" border="0" align="center">
                             <tbody>
                                 <tr>

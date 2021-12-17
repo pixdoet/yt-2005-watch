@@ -199,15 +199,22 @@
                             </tr>
                         </tbody>
                     </table>
+
+
+
+
+
+
+
                     <table style="margin-bottom: 10px;" cellspacing="0" cellpadding="0" border="0" align="center">
                         <tbody>
                             <tr>
-                                <form name="searchForm" id="searchForm" method="get" action="results.php">
-                                    <td style="padding-right: 5px;"><input tabindex="1" type="text" name="search" maxlength="128" value="home" style="color:#ff3333; font-size: 12px; width: 300px;"></td>
-                                    <td>
-                                        <input type="submit" name="search_videos" value="Search Videos">
-                                    </td>
-                                </form>
+                                <form name="searchForm" id="searchForm" method="get" action="results.php"></form>
+                                <td style="padding-right: 5px;"><input tabindex="1" type="text" name="search" maxlength="128" value="home" style="color:#ff3333; font-size: 12px; width: 300px;"></td>
+                                <td>
+                                    <input type="submit" name="search_videos" value="Search Videos">
+
+                                </td>
 
                             </tr>
                         </tbody>
@@ -265,7 +272,17 @@
                             <tr>
                                 <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
                                 <td>
-                                    Please enter a search query
+                                    No results found
+
+
+
+
+
+
+
+
+
+
                                     <!-- begin paging -->
                                     <div style="font-size: 13px; font-weight: bold; color: #444; text-align: right; padding: 5px 0px 5px 0px;">
                                         Results Page:
@@ -319,5 +336,4 @@
     <div id="tooltip"></div>
 
 </body>
-
 </html>
