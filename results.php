@@ -33,9 +33,8 @@ if (!isset($_GET['search'])) {
     }
 
 ?>
-    <!DOCTYPE html>
-
-    <html>
+<!DOCTYPE html>
+<html>
 
     <head>
 
@@ -43,7 +42,7 @@ if (!isset($_GET['search'])) {
 
         <link rel="stylesheet" type="text/css" href="yts/cssbin/styles.css">
         <link rel="icon" href="yts/imgbin/favicon.ico" type="image/x-icon">
-        <link rel="shortcut icon" href="yts/imgbinfavicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="yts/imgbin/favicon.ico" type="image/x-icon">
 
         <link rel="alternate" type="application/rss+xml" title="YouTube - Recently Added Videos [RSS]" href="http://www.youtube.com/rss/global/recently_added.rss">
 
@@ -310,6 +309,11 @@ if (!isset($_GET['search'])) {
                                 //$videoDescription = $items[$]->videoRenderer->
                                 $videoThumbnail = $items[$i]->videoRenderer->thumbnail->thumbnails[0]->url;
                                 $videoAuthor = $items[$i]->videoRenderer->longBylineText->runs[0]->text;
+                                $videoViews = $items[$i]->videoRenderer->viewCountText->simpleText;
+                                $videoRuntime = $items[$i]->videoRenderer->lengthText->simpleText;
+                            }
+                            else{
+                                $i += 1;
                             }
                         ?>
                             <div class="moduleEntry">
@@ -335,7 +339,7 @@ if (!isset($_GET['search'])) {
                                                 <div class="moduleEntryDetails">Channels // <a href="/channels_portal.php?c=3">Education &amp; Instructional</a> : <a href="/channels_portal.php?c=8">Hobbies &amp; Interests</a> : <a href="/channels_portal.php?c=9">Humor</a>
                                                 </div>
                                                 <div class="moduleEntryDetails">Added: 1 week ago by <a href="/profile?user=<?php echo $videoAuthor ?>"><?php echo $videoAuthor; ?></a></div>
-                                                <div class="moduleEntryDetails">Runtime: 01:57 | Views: 7 | Comments: 0</div>
+                                                <div class="moduleEntryDetails">Runtime: <?php echo $videoRuntime;?> | Views: <?php echo $videoViews;?> | Comments: 0</div>
 
                                             </td>
                                         </tr>
@@ -404,7 +408,8 @@ if (!isset($_GET['search'])) {
 
     </body>
 
-    </html>
+</html>
 <?php
 }
+// end file
 ?>
