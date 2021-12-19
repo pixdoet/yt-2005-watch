@@ -18,6 +18,10 @@ if (!isset($_GET['search'])) {
             // start from element 1
             $arr = 1;
         }
+        // also skip channels
+        elseif (isset($items[0]->channelRenderer)) {
+            $arr = 1;
+        }
         // we wanna find out how many results are there
         // so that we can prevent looping too much if there's
         // less than desired amount of results
@@ -69,7 +73,7 @@ if (!isset($_GET['search'])) {
                         <table width="100%" cellspacing="0" cellpadding="0" border="0">
                             <tbody>
                                 <tr valign="top">
-                                    <td rowspan="2" style="padding: 0px 5px 5px 5px;" width="130"><a href="/index.php"><img src="yts/imgbin//logo_sm.gif" alt="YouTube" style="vertical-align: middle; " width="120" height="48" border="0"></a></td>
+                                    <td rowspan="2" style="padding: 0px 5px 5px 5px;" width="130"><a href="/index.php"><img src="yts/imgbin/logo_sm.gif" alt="YouTube" style="vertical-align: middle; " width="120" height="48" border="0"></a></td>
                                     <td valign="top">
 
                                         <table width="670" cellspacing="0" cellpadding="0" border="0">
@@ -106,14 +110,14 @@ if (!isset($_GET['search'])) {
                                                         <table style="background-color: #DDDDDD; margin: 5px 2px 1px 0px; border-bottom: 1px solid #DDDDDD;" cellspacing="0" cellpadding="0" border="0">
                                                             <tbody>
                                                                 <tr>
-                                                                    <td><img src="yts/imgbin//box_login_tl.gif" width="5" height="5"></td>
-                                                                    <td><img src="yts/imgbin//pixel.gif" width="1" height="5"></td>
-                                                                    <td><img src="yts/imgbin//box_login_tr.gif" width="5" height="5"></td>
+                                                                    <td><img src="yts/imgbin/box_login_tl.gif" width="5" height="5"></td>
+                                                                    <td><img src="yts/imgbin/pixel.gif" width="1" height="5"></td>
+                                                                    <td><img src="yts/imgbin/box_login_tr.gif" width="5" height="5"></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td><img src="yts/imgbin//pixel.gif" width="5" height="1"></td>
+                                                                    <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
                                                                     <td style="padding: 0px 20px 5px 20px; font-size: 13px; font-weight: bold;"><a href="/index.php">Home</a></td>
-                                                                    <td><img src="yts/imgbin//pixel.gif" width="5" height="1"></td>
+                                                                    <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -122,14 +126,14 @@ if (!isset($_GET['search'])) {
                                                         <table style="background-color: #BECEEE; margin: 5px 2px 1px 0px;" cellspacing="0" cellpadding="0" border="0">
                                                             <tbody>
                                                                 <tr>
-                                                                    <td><img src="yts/imgbin//box_login_tl.gif" width="5" height="5"></td>
-                                                                    <td><img src="yts/imgbin//pixel.gif" width="1" height="5"></td>
-                                                                    <td><img src="yts/imgbin//box_login_tr.gif" width="5" height="5"></td>
+                                                                    <td><img src="yts/imgbin/box_login_tl.gif" width="5" height="5"></td>
+                                                                    <td><img src="yts/imgbin/pixel.gif" width="1" height="5"></td>
+                                                                    <td><img src="yts/imgbin/box_login_tr.gif" width="5" height="5"></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td><img src="yts/imgbin//pixel.gif" width="5" height="1"></td>
+                                                                    <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
                                                                     <td style="padding: 0px 20px 5px 20px; font-size: 13px; font-weight: bold;"><a href="/browse.php">Videos</a></td>
-                                                                    <td><img src="yts/imgbin//pixel.gif" width="5" height="1"></td>
+                                                                    <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -138,14 +142,14 @@ if (!isset($_GET['search'])) {
                                                         <table style="background-color: #BECEEE; margin: 5px 2px 1px 0px;" cellspacing="0" cellpadding="0" border="0">
                                                             <tbody>
                                                                 <tr>
-                                                                    <td><img src="yts/imgbin//box_login_tl.gif" width="5" height="5"></td>
-                                                                    <td><img src="yts/imgbin//pixel.gif" width="1" height="5"></td>
-                                                                    <td><img src="yts/imgbin//box_login_tr.gif" width="5" height="5"></td>
+                                                                    <td><img src="yts/imgbin/box_login_tl.gif" width="5" height="5"></td>
+                                                                    <td><img src="yts/imgbin/pixel.gif" width="1" height="5"></td>
+                                                                    <td><img src="yts/imgbin/box_login_tr.gif" width="5" height="5"></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td><img src="yts/imgbin//pixel.gif" width="5" height="1"></td>
+                                                                    <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
                                                                     <td style="padding: 0px 20px 5px 20px; font-size: 13px; font-weight: bold;"><a href="/channels">Channels</a></td>
-                                                                    <td><img src="yts/imgbin//pixel.gif" width="5" height="1"></td>
+                                                                    <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -154,14 +158,14 @@ if (!isset($_GET['search'])) {
                                                         <table style="background-color: #BECEEE; margin: 5px 2px 1px 0px;" cellspacing="0" cellpadding="0" border="0">
                                                             <tbody>
                                                                 <tr>
-                                                                    <td><img src="yts/imgbin//box_login_tl.gif" width="5" height="5"></td>
-                                                                    <td><img src="yts/imgbin//pixel.gif" width="1" height="5"></td>
-                                                                    <td><img src="yts/imgbin//box_login_tr.gif" width="5" height="5"></td>
+                                                                    <td><img src="yts/imgbin/box_login_tl.gif" width="5" height="5"></td>
+                                                                    <td><img src="yts/imgbin/pixel.gif" width="1" height="5"></td>
+                                                                    <td><img src="yts/imgbin/box_login_tr.gif" width="5" height="5"></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td><img src="yts/imgbin//pixel.gif" width="5" height="1"></td>
+                                                                    <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
                                                                     <td style="padding: 0px 20px 5px 20px; font-size: 13px; font-weight: bold;"><a href="/my_friends.php">Friends</a></td>
-                                                                    <td><img src="yts/imgbin//pixel.gif" width="5" height="1"></td>
+                                                                    <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -170,14 +174,14 @@ if (!isset($_GET['search'])) {
                                                         <table style="background-color: #BECEEE; margin: 5px 2px 1px 0px;" cellspacing="0" cellpadding="0" border="0">
                                                             <tbody>
                                                                 <tr>
-                                                                    <td><img src="yts/imgbin//box_login_tl.gif" width="5" height="5"></td>
-                                                                    <td><img src="yts/imgbin//pixel.gif" width="1" height="5"></td>
-                                                                    <td><img src="yts/imgbin//box_login_tr.gif" width="5" height="5"></td>
+                                                                    <td><img src="yts/imgbin/box_login_tl.gif" width="5" height="5"></td>
+                                                                    <td><img src="yts/imgbin/pixel.gif" width="1" height="5"></td>
+                                                                    <td><img src="yts/imgbin/box_login_tr.gif" width="5" height="5"></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td><img src="yts/imgbin//pixel.gif" width="5" height="1"></td>
+                                                                    <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
                                                                     <td style="padding: 0px 20px 5px 20px; font-size: 13px; font-weight: bold;"><a href="/my_videos_upload.php">Upload</a></td>
-                                                                    <td><img src="yts/imgbin//pixel.gif" width="5" height="1"></td>
+                                                                    <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -199,7 +203,7 @@ if (!isset($_GET['search'])) {
                                     <td><img src="yts/imgbin/box_login_tr.gif" width="5" height="5"></td>
                                 </tr>
                                 <tr>
-                                    <td><img src="yts/imgbin//pixel.gif" width="5" height="1"></td>
+                                    <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
                                     <td style="padding: 2px;" width="790" align="center">
 
                                         <table cellspacing="0" cellpadding="0" border="0">
@@ -223,12 +227,12 @@ if (!isset($_GET['search'])) {
                                         </table>
 
                                     </td>
-                                    <td><img src="yts/imgbin//pixel.gif" width="5" height="1"></td>
+                                    <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
                                 </tr>
                                 <tr>
-                                    <td style="border-bottom: 1px solid #FFFFFF"><img src="yts/imgbin//box_login_bl.gif" width="5" height="5"></td>
-                                    <td style="border-bottom: 1px solid #BBBBBB"><img src="yts/imgbin//pixel.gif" width="1" height="5"></td>
-                                    <td style="border-bottom: 1px solid #FFFFFF"><img src="yts/imgbin//box_login_br.gif" width="5" height="5"></td>
+                                    <td style="border-bottom: 1px solid #FFFFFF"><img src="yts/imgbin/box_login_bl.gif" width="5" height="5"></td>
+                                    <td style="border-bottom: 1px solid #BBBBBB"><img src="yts/imgbin/pixel.gif" width="1" height="5"></td>
+                                    <td style="border-bottom: 1px solid #FFFFFF"><img src="yts/imgbin/box_login_br.gif" width="5" height="5"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -311,41 +315,42 @@ if (!isset($_GET['search'])) {
                                 $videoAuthor = $items[$i]->videoRenderer->longBylineText->runs[0]->text;
                                 $videoViews = $items[$i]->videoRenderer->viewCountText->simpleText;
                                 $videoRuntime = $items[$i]->videoRenderer->lengthText->simpleText;
-                            }
-                            else{
+                        ?>
+                                <div class="moduleEntry">
+                                    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody>
+                                            <tr valign="top">
+                                                <td>
+                                                    <table cellspacing="0" cellpadding="0" border="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><a href="watch.php?v=<?php echo $videoId; ?>&amp;search=youtube"><img src="<?php echo $videoThumbnail; ?>" class="moduleEntryThumb" width="100" height="75"></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </td>
+                                                <td width="100%">
+                                                    <div class="moduleEntryTitle"><a href="watch.php?v=<?php echo $videoId; ?>&search=youtube"><?php echo $videoTitle; ?></a></div>
+                                                    <div class="moduleEntryDescription">I think YouTube is very exciting.</div>
+                                                    <div class="moduleEntryTags">
+                                                        Tags // <a href="/results.php?search=professor">professor</a> : <a href="/results.php?search=mind">mind</a> : <a href="/results.php?search=secrets">secrets</a> : <a href="/results.php?search=cannabis">cannabis</a>
+                                                    </div>
+                                                    <div class="moduleEntryDetails">Channels // <a href="/channels_portal.php?c=3">Education &amp; Instructional</a> : <a href="/channels_portal.php?c=8">Hobbies &amp; Interests</a> : <a href="/channels_portal.php?c=9">Humor</a>
+                                                    </div>
+                                                    <div class="moduleEntryDetails">Added: 1 week ago by <a href="/profile?user=<?php echo $videoAuthor ?>"><?php echo $videoAuthor; ?></a></div>
+                                                    <div class="moduleEntryDetails">Runtime: <?php echo $videoRuntime; ?> | Views: <?php echo $videoViews; ?> | Comments: 0</div>
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            <?php
+                            } elseif (isset($items[$i]->channelRenderer)) {
                                 $i += 1;
                             }
-                        ?>
-                            <div class="moduleEntry">
-                                <table width="100%" cellspacing="0" cellpadding="0" border="0">
-                                    <tbody>
-                                        <tr valign="top">
-                                            <td>
-                                                <table cellspacing="0" cellpadding="0" border="0">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td><a href="watch.php?v=<?php echo $videoId; ?>&amp;search=youtube"><img src="<?php echo $videoThumbnail; ?>" class="moduleEntryThumb" width="100" height="75"></a></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-
-                                            </td>
-                                            <td width="100%">
-                                                <div class="moduleEntryTitle"><a href="watch.php?v=<?php echo $videoId; ?>&search=youtube"><?php echo $videoTitle; ?></a></div>
-                                                <div class="moduleEntryDescription">I think YouTube is very exciting.</div>
-                                                <div class="moduleEntryTags">
-                                                    Tags // <a href="/results.php?search=professor">professor</a> : <a href="/results.php?search=mind">mind</a> : <a href="/results.php?search=secrets">secrets</a> : <a href="/results.php?search=cannabis">cannabis</a>
-                                                </div>
-                                                <div class="moduleEntryDetails">Channels // <a href="/channels_portal.php?c=3">Education &amp; Instructional</a> : <a href="/channels_portal.php?c=8">Hobbies &amp; Interests</a> : <a href="/channels_portal.php?c=9">Humor</a>
-                                                </div>
-                                                <div class="moduleEntryDetails">Added: 1 week ago by <a href="/profile?user=<?php echo $videoAuthor ?>"><?php echo $videoAuthor; ?></a></div>
-                                                <div class="moduleEntryDetails">Runtime: <?php echo $videoRuntime;?> | Views: <?php echo $videoViews;?> | Comments: 0</div>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            ?>
                         <?php
                         }
                         ?>
@@ -380,7 +385,7 @@ if (!isset($_GET['search'])) {
             <tbody>
                 <tr>
                     <td valign="center" align="center">
-                        <span class="footer"><a href="/blog">Our Blog</a> <img src="yts/imgbin//new.gif"> | <a href="/t/about">About Us</a> | <a href="/help.php">Help</a> | <a href="/dev">Developers</a> | <a href="/t/terms">Terms of Use</a> | <a href="/t/privacy">Privacy Policy</a> | <a href="/t/jobs">Jobs</a>
+                        <span class="footer"><a href="/blog">Our Blog</a> <img src="yts/imgbin/new.gif"> | <a href="/t/about">About Us</a> | <a href="/help.php">Help</a> | <a href="/dev">Developers</a> | <a href="/t/terms">Terms of Use</a> | <a href="/t/privacy">Privacy Policy</a> | <a href="/t/jobs">Jobs</a>
                             <br>
                             <br>
                             Copyright © 2005 YouTube, Inc.™ | <a href="/rss/global/recently_added.rss"><img src="yts/imgbin/rss.gif" style="vertical-align: text-top;" width="36" height="14" border="0"></a></span>
@@ -408,7 +413,7 @@ if (!isset($_GET['search'])) {
 
     </body>
 
-</html>
+    </html>
 <?php
 }
 // end file
