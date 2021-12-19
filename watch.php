@@ -262,7 +262,7 @@ if (!isset($_GET['v'])) {
                                                             <div class="watchTags">Tags //
                                                                 <?php
                                                                 for ($i = 0; $i < $tagcount; $i++) { ?>
-                                                                    <a href="//youtube.com/results?search_query=<?php echo $tags[$i]; ?>"><?php echo $tags[$i]; ?></a> :
+                                                                    <a href="results.php?search=<?php echo $tags[$i]; ?>"><?php echo $tags[$i]; ?></a> :
                                                                 <?php } ?>
                                                             </div>
 
@@ -415,7 +415,7 @@ if (!isset($_GET['v'])) {
                                             <?php
                                             for ($i = 0; $i < $tagcount; $i++) {
                                             ?>
-                                                <div style="padding: 0px 0px 5px 0px; color: #999;">» <a href="//youtube.com/results?search_query=<?php echo $tags[$i]; ?>" target="_blank"><?php echo $tags[$i]; ?></a></div>
+                                                <div style="padding: 0px 0px 5px 0px; color: #999;">» <a href="results.php?search=<?php echo $tags[$i]; ?>" target="_blank"><?php echo $tags[$i]; ?></a></div>
                                             <?php
                                             }
                                             ?>
