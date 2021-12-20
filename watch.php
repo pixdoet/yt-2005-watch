@@ -14,7 +14,7 @@ if (!isset($_GET['v'])) {
     //print_r($mainResponseObject);
     $videoDetails = array(
         "videoTitle" => $mainResponseObject->videoDetails->title,
-        "videoDescription" => "<span class='redtext' style='color: red'><i>No description</i></span>",
+        "videoDescription" => '<span class="redtext"><i>No description</i></span>',
         "videoLengthInSeconds" => $mainResponseObject->videoDetails->lengthSeconds,
         "videoViews" => $mainResponseObject->videoDetails->viewCount,
         "videoAuthor" => $mainResponseObject->microformat->playerMicroformatRenderer->ownerChannelName,
