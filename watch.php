@@ -10,7 +10,7 @@ if (!isset($_GET['v'])) {
     
     // request player :hsuk:
     $response_object = requestPlayer($id);
-
+    $mainResponseObject = json_decode($response_object);
     //print_r($mainResponseObject);
     $videoDetails = array(
         "videoTitle" => $mainResponseObject->videoDetails->title,
