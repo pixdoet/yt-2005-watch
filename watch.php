@@ -8,21 +8,23 @@ if (!isset($_GET['v'])) {
     // request player :hsuk:
     $response_object = requestPlayer($id);
 
+    // fetch search for timing :husk:
     $mainResponseObject = json_decode($response_object);
     //print_r($mainResponseObject);
     $videoDetails = array(
         "videoTitle" => $mainResponseObject->videoDetails->title,
-
         "videoDescription" => "<span class='redtext' style='color: red'><i>No description</i></span>",
-        // "videoTags" => array(
-        // $mainResponseObject->keywords
-        // ),
         "videoLengthInSeconds" => $mainResponseObject->videoDetails->lengthSeconds,
         "videoViews" => $mainResponseObject->videoDetails->viewCount,
         "videoAuthor" => $mainResponseObject->microformat->playerMicroformatRenderer->ownerChannelName,
-        "videoUploadDate" => $mainResponseObject->microformat->playerMicroformatRenderer->uploadDate
+        "videoUploadDate" => $mainResponseObject->microformat->playerMicroformatRenderer->uploadDate,
+        "videoRuntime" => $mainResponseObject->microformat->playerMicroformatRenderer->lengthSeconds,
+        "videoThumbnail" => $mainResponseObject->microformat->playerMicroformatRenderer->thumbnail->thumbnails[0]->url
     );
-
+    // replace description text if description exists
+    if (isset($mainResponseObject->microformat->playerMicroformatRenderer->description->simpleText)) {
+        $videoDetails['videoDescription'] = $mainResponseObject->microformat->playerMicroformatRenderer->description->simpleText;
+    }
     // get video tags(annoying)
     if (isset($mainResponseObject->videoDetails->keywords)) {
         $tagarr = $mainResponseObject->videoDetails->keywords;
@@ -35,18 +37,20 @@ if (!isset($_GET['v'])) {
     } else {
         $tagcount = 0;
     }
-    if (isset($mainResponseObject->microformat->playerMicroformatRenderer->description->simpleText)) {
-        $videoDetails['videoDescription'] = $mainResponseObject->microformat->playerMicroformatRenderer->description->simpleText;
+
+    // video source file
+    if (isset($mainResponseObject->streamingData->formats[0]->url)) {
+        // generate video tag HTML
+        $videoHtml = sprintf('<video controls src="%s" class="video-player googlevideo-player" style="width: 427px; margin:center;">', $mainResponseObject->streamingData->formats[0]->url);
+    } else {
+        // generate error text HTML
+        $videoHtml = sprintf('Video unavailable for playback. <a href="https://youtube.com/watch?v=%s">Watch on YouTube</a>', $id);
     }
 
 
-    // video source file
-    $videoSrc = $mainResponseObject->streamingData->formats[0]->url;
-
-
 ?>
-    <!DOCTYPE html>
-    <html lang="en" data-cast-api-enabled="false">
+<!DOCTYPE html>
+<html lang="en" data-cast-api-enabled="false">
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -55,7 +59,7 @@ if (!isset($_GET['v'])) {
         <link rel="icon" href="yts/imgbin/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="yts/imgbin/favicon.ico" type="image/x-icon">
         <link href="yts/cssbin/styles.css" rel="stylesheet" type="text/css">
-        <link rel="alternate" type="application/rss+xml" title="YouTube " "="" recently="" added="" videos="" [rss]"="" href="http://www.youtube.com/rss/global/recently_added.rss">
+        <link rel="alternate" type="application/rss+xml" title="YouTube " recently="" added="" videos="" [rss]"="" href="http://www.youtube.com/rss/global/recently_added.rss">
     </head>
 
 
@@ -231,26 +235,17 @@ if (!isset($_GET['v'])) {
 
                                             <div class="tableSubTitle"><?php echo $videoDetails["videoTitle"]; ?></div>
                                             <div style="font-size: 13px; font-weight: bold; text-align:center;">
-                                                <a href="mailto:?subject=<?php echo $videoDetails["videoTitle"]; ?>&body=http://www.youtube.com/?v=vy8evhya_9E">Share</a>
+                                                <a href="mailto:?subject=<?php echo $videoDetails["videoTitle"]; ?>&body=http://www.youtube.com/?v=<?php echo $id; ?>">Share</a>
                                                 // <a href="#comment">Comment</a>
-                                                // <a href="add_favorites.php?video_id=vy8evhya_9E" target="invisible" onclick="return FavoritesHandler();">Add to Favorites</a>
+                                                // <a href="add_favorites.php?video_id=<?php echo $id; ?>" target="invisible" onclick="return FavoritesHandler();">Add to Favorites</a>
                                                 // <a href="outbox.php?user=<?php echo $videoDetails["videoAuthor"]; ?>&subject=Re: <?php echo $videoDetails['videoTitle']; ?>1">Contact Me</a>
                                             </div>
 
                                             <div style="text-align: center; padding-bottom: 10px;">
-                                                <div id="flashcontent">
-                                                    <video controls src="<?php echo $videoSrc; ?>" class="video-player googlevideo-player" style="width: 427px; margin:center;">
+                                                <div id="flashcontent" class="videoPlayerHolder">
+                                                    <?php echo $videoHtml; ?>
                                                 </div>
                                             </div>
-
-                                            <script type="text/javascript">
-                                                // <![CDATA[
-                                                // wtf is this flashobject thing :womit:
-                                                var fo = new FlashObject("player.swf?video_id=vy8evhya_9E&l=30", "player", "425", "350", 7, "#FFFFFF");
-                                                fo.write("flashcontent");
-
-                                                // ]]>
-                                            </script>
 
                                             <table width="425" cellspacing="0" cellpadding="0" border="0" align="center">
                                                 <tbody>
@@ -265,7 +260,6 @@ if (!isset($_GET['v'])) {
                                                                     <a href="results.php?search=<?php echo $tags[$i]; ?>"><?php echo $tags[$i]; ?></a> :
                                                                 <?php } ?>
                                                             </div>
-
 
                                                             <div class="watchAdded">
                                                                 Added: <?php echo $videoDetails["videoUploadDate"]; ?> by <a href="profile.php?user=<?php echo $videoDetails["videoAuthor"]; ?>"><?php echo $videoDetails["videoAuthor"]; ?></a> //
@@ -348,7 +342,6 @@ if (!isset($_GET['v'])) {
                                                 - <a href="profile.php?user=larfus">larfus</a> // <a href="profile_videos.php?user=larfus">Videos</a> (41) | <a href="profile_favorites.php?user=larfus">Favorites</a> (6) | <a href="profile_friends.php?user=larfus">Friends</a> (0) - (41 days, 13 hours, 53 minutes ago)</div>
                                         </td>
                                         <td width="280">
-
                                             <table width="280" cellspacing="0" cellpadding="0" border="0" bgcolor="#CCCCCC" align="center">
                                                 <tbody>
                                                     <tr>
@@ -363,43 +356,46 @@ if (!isset($_GET['v'])) {
                                                                 <table width="270" cellspacing="0" cellpadding="0" border="0">
                                                                     <tbody>
                                                                         <tr valign="top">
+
                                                                             <td>
-                                                                                <div class="moduleFrameBarTitle">Tag // <?php echo htmlspecialchars($videoDetails['videoTitle']); ?></div>
+                                                                                <div class="moduleFrameBarTitle">Related Videos (1 of Many)</div>
                                                                             </td>
-                                                                            <td style="text-align:right;">
-                                                                                <div style="font-size: 11px; margin-right: 5px;"><a href="results.php?&amp;search=aerobatic+sukhoi+airplane+stunt+trick" target="_parent">See more Results</a></div>
+                                                                            <td align="right">
+                                                                                <div style="font-size: 11px; margin-right: 5px;"><a href="results.php?search=<?php echo $videoDetails['videoTitle']; ?>" target="_parent">See All Results</a></div>
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
 
+                                                            <div id="side_results" name="side_results">
+                                                                <div class="moduleFrameEntrySelected">
 
-                                                        </td>
-                                                        <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><img src="yts/imgbin/box_login_bl.gif" width="5" height="5"></td>
-                                                        <td><img src="yts/imgbin/pixel.gif" width="1" height="5"></td>
-                                                        <td><img src="yts/imgbin/box_login_br.gif" width="5" height="5"></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table><br>
+                                                                    <table width="235" cellspacing="0" cellpadding="0" border="0">
+                                                                        <tbody>
+                                                                            <tr valign="top">
+                                                                                <td width="90">
+                                                                                    <a href="watch.php?v=<?php echo $id ?>" class="bold" target="_parent"><img src="<?php echo $videoDetails['videoThumbnail']; ?>" class="moduleEntryThumb" width="80" height="60"></a>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="moduleFrameTitle"><a href="watch.php?v=<?php echo $id; ?>" target="_parent"><?php echo $videoDetails['videoTitle']; ?></a></div>
+                                                                                    <div class="moduleFrameDetails">
+                                                                                        by <a href="profile.php?user=<?php echo $videoDetails['videoAuthor']; ?>" target="_parent"><?php echo $videoDetails['videoAuthor']; ?></a>
+                                                                                    </div>
+                                                                                    <div class="moduleFrameDetails">
+                                                                                        Runtime: <?php echo gmdate("i:s", $videoDetails["videoRuntime"]); ?><br>
+                                                                                        Views: <?php echo $videoDetails['videoViews']; ?><br>
+                                                                                        Comments: 4
+                                                                                    </div>
 
-                                            <table width="280" cellspacing="0" cellpadding="0" border="0" bgcolor="#FFFFCC" align="center">
-                                                <tbody>
-                                                    <tr>
-                                                        <td><img src="yts/imgbin/box_login_tl.gif" width="5" height="5"></td>
-                                                        <td><img src="yts/imgbin/pixel.gif" width="1" height="5"></td>
-                                                        <td><img src="yts/imgbin/box_login_tr.gif" width="5" height="5"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
-                                                        <td width="270">
-                                                            <div style="padding: 5px;">
-                                                                <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-                                                                </script>
-                                                            </div>
+                                                                                    <div style="font-size: 10px; font-weight:bold; color: #CC6600; padding: 3px 6px; background-color:#FFCC66;">
+                                                                                        <nobr>&lt;&lt;&lt; NOW PLAYING!</nobr>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
                                                         </td>
                                                         <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
                                                     </tr>
@@ -410,7 +406,6 @@ if (!isset($_GET['v'])) {
                                                     </tr>
                                                 </tbody>
                                             </table>
-
                                             <div style="font-weight: bold; color: #333; margin: 10px 0px 5px 0px;">Related tags:</div>
                                             <?php
                                             // echo tags
@@ -420,7 +415,6 @@ if (!isset($_GET['v'])) {
                                             <?php
                                             }
                                             ?>
-
                                         </td>
                                     </tr>
 
