@@ -1,15 +1,16 @@
 <?php
 // watch.php for watching videos
+
 include("includes/youtubei/createRequest.php");
+
 if (!isset($_GET['v'])) {
     echo "Please provide a valid video id";
 } else {
     $id = $_GET['v'];
+    
     // request player :hsuk:
     $response_object = requestPlayer($id);
 
-    // fetch search for timing :husk:
-    $mainResponseObject = json_decode($response_object);
     //print_r($mainResponseObject);
     $videoDetails = array(
         "videoTitle" => $mainResponseObject->videoDetails->title,
@@ -21,10 +22,12 @@ if (!isset($_GET['v'])) {
         "videoRuntime" => $mainResponseObject->microformat->playerMicroformatRenderer->lengthSeconds,
         "videoThumbnail" => $mainResponseObject->microformat->playerMicroformatRenderer->thumbnail->thumbnails[0]->url
     );
+    
     // replace description text if description exists
     if (isset($mainResponseObject->microformat->playerMicroformatRenderer->description->simpleText)) {
         $videoDetails['videoDescription'] = $mainResponseObject->microformat->playerMicroformatRenderer->description->simpleText;
     }
+    
     // get video tags(annoying)
     if (isset($mainResponseObject->videoDetails->keywords)) {
         $tagarr = $mainResponseObject->videoDetails->keywords;
