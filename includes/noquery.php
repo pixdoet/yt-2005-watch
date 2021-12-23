@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" type="text/css" href="yts/cssbin/styles.css">
     <link rel="icon" href="yts/imgbin/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="yts/imgbinfavicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="yts/imgbin/favicon.ico" type="image/x-icon">
 
     <link rel="alternate" type="application/rss+xml" title="YouTube - Recently Added Videos [RSS]" href="http://www.youtube.com/rss/global/recently_added.rss">
 
