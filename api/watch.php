@@ -8,7 +8,7 @@ if (isset($_GET['v'])) {
     $id = $_GET['v'];
 
     $mainResponseObject = json_decode(requestPlayer($id));
-
+    
     $response = array(
         "videoId" => $id,
         "videoDetails" => array(
