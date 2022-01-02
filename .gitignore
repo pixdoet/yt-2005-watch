@@ -4,3 +4,6 @@ cookies_old.txt
 # ignore responses used for dev
 responses/*
 *_raw*
+
+# ignore top secret project
+dynamicpages/*
