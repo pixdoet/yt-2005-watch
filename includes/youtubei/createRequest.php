@@ -404,8 +404,12 @@ function requestChannel($channelId,$type)
       case "channels":
         $brEp = $ep[3]->tabRenderer->endpoint->browseEndpoint->params;
         break; //LMAO forgot
+      case "about":
+        $brEp = $ep[4]->tabRenderer->endpoint->browseEndpoint->params;
+        break;
       default:
-        $brEp = $ep[1]->tabRenderer->endpoint->browseEndpoint->params;
+        $brEp = $ep[4]->tabRenderer->endpoint->browseEndpoint->params;
+        break;
     }
   }
   // more advanced functions for browse

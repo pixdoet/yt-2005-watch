@@ -7,11 +7,11 @@ if (!isset($_GET['v'])) {
     echo "Please provide a valid video id";
 } else {
     $id = $_GET['v'];
-    
+
     // request player :hsuk:
     $response_object = requestPlayer($id);
     $mainResponseObject = json_decode($response_object);
-    //print_r($mainResponseObject);
+
     $videoDetails = array(
         "videoTitle" => $mainResponseObject->videoDetails->title,
         "videoDescription" => '<span class="redtext"><i>No description</i></span>',
@@ -22,12 +22,12 @@ if (!isset($_GET['v'])) {
         "videoRuntime" => $mainResponseObject->microformat->playerMicroformatRenderer->lengthSeconds,
         "videoThumbnail" => $mainResponseObject->microformat->playerMicroformatRenderer->thumbnail->thumbnails[0]->url
     );
-    
+
     // replace description text if description exists
     if (isset($mainResponseObject->microformat->playerMicroformatRenderer->description->simpleText)) {
         $videoDetails['videoDescription'] = $mainResponseObject->microformat->playerMicroformatRenderer->description->simpleText;
     }
-    
+
     // get video tags(annoying)
     if (isset($mainResponseObject->videoDetails->keywords)) {
         $tagarr = $mainResponseObject->videoDetails->keywords;
@@ -52,8 +52,8 @@ if (!isset($_GET['v'])) {
 
 
 ?>
-<!DOCTYPE html>
-<html lang="en" data-cast-api-enabled="false">
+    <!DOCTYPE html>
+    <html lang="en" data-cast-api-enabled="false">
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -259,9 +259,12 @@ if (!isset($_GET['v'])) {
                                                             </div>
                                                             <div class="watchTags">Tags //
                                                                 <?php
-                                                                for ($i = 0; $i < $tagcount; $i++) { ?>
-                                                                    <a href="results.php?search=<?php echo $tags[$i]; ?>"><?php echo $tags[$i]; ?></a> :
-                                                                <?php } ?>
+                                                                    for ($i = 0; $i < $tagcount; $i++) {
+                                                                ?>
+                                                                        <a href="results.php?search=<?php echo $tags[$i]; ?>"><?php echo $tags[$i]; ?></a> :
+                                                                <?php 
+                                                                    } 
+                                                                ?>
                                                             </div>
 
                                                             <div class="watchAdded">
