@@ -259,11 +259,11 @@ if (!isset($_GET['v'])) {
                                                             </div>
                                                             <div class="watchTags">Tags //
                                                                 <?php
-                                                                    for ($i = 0; $i < $tagcount; $i++) {
+                                                                for ($i = 0; $i < $tagcount; $i++) {
                                                                 ?>
-                                                                        <a href="results.php?search=<?php echo $tags[$i]; ?>"><?php echo $tags[$i]; ?></a> :
-                                                                <?php 
-                                                                    } 
+                                                                    <a href="results.php?search=<?php echo $tags[$i]; ?>"><?php echo $tags[$i]; ?></a> :
+                                                                <?php
+                                                                }
                                                                 ?>
                                                             </div>
 
@@ -327,26 +327,11 @@ if (!isset($_GET['v'])) {
                                             </form>
                                             <br>
 
-                                            <div class="commentsTitle">Comments (8):</div>
+                                            <div class="commentsTitle">Comments (1):</div>
 
-                                            <div class="commentsEntry">"nice shot"<br>
-                                                - (9 days, 15 hours, 34 minutes ago)</div>
-                                            <div class="commentsEntry">"By he way, Vilnius is Lithuania's Capital. Riga is Latvia's capital is Riga. I'km living in Lthuania, so ... :) And This was performed by Jurgis Kairys.Not Paksas !!!"<br>
-                                                - (29 days, 20 hours, 52 minutes ago)</div>
-                                            <div class="commentsEntry">"This was done by Jurgis Kairys in Kaunas, Lithuania in 2001."<br>
-                                                - (31 days, 2 hours, 33 minutes ago)</div>
-                                            <div class="commentsEntry">"yeah yeah nice shot man ..."<br>
-                                                - (33 days, 14 hours, 31 minutes ago)</div>
-                                            <div class="commentsEntry">"This was performed by Jurgis Kairys.<br>
-                                                Not Paksas"<br>
-                                                - (33 days, 18 hours, 59 minutes ago)</div>
-                                            <div class="commentsEntry">"Vilnius/LITHUANIA you mean ;)"<br>
-                                                - (34 days, 2 hours, 38 minutes ago)</div>
-                                            <div class="commentsEntry">"This trick was done in Vilnius/Latvia in Eastern Europe (old USSR baltiv republic) by Mr Paksas formerly known as later president of this country...deleted by impeachment ;))"<br>
-                                                - (40 days, 19 hours, 44 minutes ago)</div>
-                                            <div class="commentsEntry">"awsome!"<br>
-                                                - <a href="profile.php?user=larfus">larfus</a> // <a href="profile_videos.php?user=larfus">Videos</a> (41) | <a href="profile_favorites.php?user=larfus">Favorites</a> (6) | <a href="profile_friends.php?user=larfus">Friends</a> (0) - (41 days, 13 hours, 53 minutes ago)</div>
-                                        </td>
+                                            <div class="commentsEntry">Comments not yet implemented...<br>
+                                                - (100000 Centuries ago)</div>
+                                            </td>
                                         <td width="280">
                                             <table width="280" cellspacing="0" cellpadding="0" border="0" bgcolor="#CCCCCC" align="center">
                                                 <tbody>
