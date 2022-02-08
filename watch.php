@@ -62,11 +62,11 @@ if (!isset($_GET['v'])) {
         <link rel="icon" href="yts/imgbin/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="yts/imgbin/favicon.ico" type="image/x-icon">
         <link href="yts/cssbin/styles.css" rel="stylesheet" type="text/css">
-        <link rel="alternate" type="application/rss+xml" title="YouTube " recently="" added="" videos="" [rss]"="" href="http://www.youtube.com/rss/global/recently_added.rss">
+        <link rel="alternate" type="application/rss+xml" title="YouTube " recently="" added="" videos="" [rss]="" href="http://www.youtube.com/rss/global/recently_added.rss">
     </head>
 
 
-    <body class="meta-viewport-enabled year-2005 backend-api-youtubei">
+    <body class="year-2005 backend-api-youtubei">
 
         <table width="800" cellspacing="0" cellpadding="0" border="0" align="center">
             <tbody>
@@ -273,7 +273,7 @@ if (!isset($_GET['v'])) {
                                                             </div>
 
                                                             <div class="watchDetails">
-                                                                Views: <?php echo $videoDetails['videoViews']; ?> | <a href="#comment">Comments</a>: 8 </div>
+                                                                Views: <?php echo $videoDetails['videoViews']; ?> | <a href="#comment">Comments</a>: 1 </div>
 
                                                         </td>
                                                     </tr>
@@ -331,7 +331,7 @@ if (!isset($_GET['v'])) {
 
                                             <div class="commentsEntry">Comments not yet implemented...<br>
                                                 - (100000 Centuries ago)</div>
-                                            </td>
+                                        </td>
                                         <td width="280">
                                             <table width="280" cellspacing="0" cellpadding="0" border="0" bgcolor="#CCCCCC" align="center">
                                                 <tbody>
