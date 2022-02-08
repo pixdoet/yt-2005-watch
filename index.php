@@ -1,9 +1,6 @@
 <?php
-session_start();
-
 include("includes/youtubei/createRequest.php");
 
-header("Location: results.php?search=home");
 // form a youtubei request to /youtubei/v1/browse, then get the first 10 results
 // we then fetch data with /youtube1/v1/player 
 $response_object = requestBrowse("FEwhat_to_watch");
@@ -12,13 +9,27 @@ $response = json_decode($response_object);
 function homepageFeed($number)
 {
     $response_object = requestBrowse("FEwhat_to_watch");
-
     $response = json_decode($response_object);
     $feedobj = $response->contents->twoColumnBrowseResultsRenderer->tabs[0]->tabRenderer->content->richGridRenderer->contents[$number];
-    // print_r($feedobj);
+    //print_r($feedobj);
     return $feedobj;
 }
-$test = homepageFeed(1);
+// check if box is video 
+$obj = homepageFeed(0);
+if (!isset($obj->richItemRenderer->content->videoRenderer)) {
+    $obj = homepageFeed(1);
+}
+
+// create details array
+$obj_accessor = $obj->richItemRenderer->content->videoRenderer; //->title->runs[0]->text;
+$obj_details = array(
+    "videoTitle" => $obj_accessor->title->runs[0]->text,
+    "videoThumbnail" => $obj_accessor->thumbnail->thumbnails[0]->url,
+    "videoId" => $obj_accessor->videoId,
+    "videoDescription" => $obj_accessor->descriptionSnippet->runs[0]->text,
+    "videoRuntime" => $obj_accessor->lengthText->simpleText,
+    "videoViewcount" => $obj_accessor->viewCountText->simpleText,
+);
 
 ?>
 <!DOCTYPE html>
@@ -30,9 +41,8 @@ $test = homepageFeed(1);
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="yts/imgbin/favicon.ico" type="image/x-icon">
     <link href="yts/cssbin/styles.css" rel="stylesheet" type="text/css">
-    <link rel="alternate" type="application/rss+xml" title="YouTube " recently="" added="" videos="" [rss]"="" href="http://www.youtube.com/rss/global/recently_added.rss">
+    <link rel="alternate" type="application/rss+xml" title="YouTube " recently="" added="" videos="" [rss]="" href="http://www.youtube.com/rss/global/recently_added.rss">
 </head>
-
 
 <body>
 
@@ -73,7 +83,6 @@ $test = homepageFeed(1);
                                     </table>
                                 </td>
                             </tr>
-
                             <tr>
                                 <td width="100%">
 
@@ -89,15 +98,11 @@ $test = homepageFeed(1);
                                                 <td>
                                                     <input type="submit" value="Search Videos">
                                                 </td>
-
                                             </tr>
                                         </tbody>
                                     </table>
-
                                 </td>
                             </tr>
-
-
                         </tbody>
                     </table>
 
@@ -220,14 +225,14 @@ $test = homepageFeed(1);
                                                             <table width="565" cellspacing="0" cellpadding="0" border="0">
                                                                 <tbody>
                                                                     <tr valign="top">
-                                                                        <td><a href="index.php?v=1cMc3n5-iqQ"><img src="get_still.php?video_id=1cMc3n5-iqQ" class="moduleEntryThumb" width="120" height="90"></a></td>
+                                                                        <td><a href="<?php echo $obj_details['videoId']; ?>"><img src="<?php echo $obj_details['videoThumbnail']; ?>" class="moduleEntryThumb" width="120" height="90"></a></td>
                                                                         <td width="100%">
-                                                                            <div class="moduleEntryTitle"><a href="index.php?v=1cMc3n5-iqQ">Homage To The Real NorCal</a></div>
-                                                                            <div class="moduleEntryDescription">It's described. As is above. A homage and tribute to the grand city of Martinez, and the future home of the new reality TV show.</div>
+                                                                            <div class="moduleEntryTitle"><a href="watch.php?v=<?php echo $obj_details['videoId'] ?>"><?php echo $obj_details['videoTitle']; ?></a></div>
+                                                                            <div class="moduleEntryDescription"><?php echo $obj_details['videoDescription']; ?></div>
                                                                             <div class="moduleEntryTags">
                                                                                 Tags // <a href="results.php?search=Martinez">Martinez</a> : <a href="results.php?search=Real">Real</a> : <a href="results.php?search=NorCal">NorCal</a> : <a href="results.php?search=Awesome">Awesome</a> : </div>
                                                                             <div class="moduleEntryDetails">Added: July 31, 2005 by <a href="profile.php?user=icer2k5">icer2k5</a></div>
-                                                                            <div class="moduleEntryDetails">Views: 70 | Comments: 0</div>
+                                                                            <div class="moduleEntryDetails">Views: <?php echo $obj_details['videoViewcount']; ?> | Comments: 0</div>
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>
@@ -261,9 +266,7 @@ $test = homepageFeed(1);
                                                     <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
                                                     <td width="170">
 
-
                                                         <div style="font-size: 16px; font-weight: bold; text-align: center; padding: 5px 5px 10px 5px;"><a href="signup.php">Sign up for your free account!</a></div>
-
 
                                                     </td>
                                                     <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
