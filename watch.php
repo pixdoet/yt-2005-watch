@@ -20,13 +20,14 @@ if (!isset($_GET['v'])) {
     else {
         $videoDetails = array(
             "videoTitle" => $mainResponseObject->videoDetails->title,
-            "videoDescription" => '<span class="redtext"><i>No description</i></span>',
+            "videoDescription" => '<span class="redtext"><i>No description</i></span>', // due for modification later
             "videoLengthInSeconds" => $mainResponseObject->videoDetails->lengthSeconds,
             "videoViews" => $mainResponseObject->videoDetails->viewCount,
             "videoAuthor" => $mainResponseObject->microformat->playerMicroformatRenderer->ownerChannelName,
             "videoUploadDate" => $mainResponseObject->microformat->playerMicroformatRenderer->uploadDate,
             "videoRuntime" => $mainResponseObject->microformat->playerMicroformatRenderer->lengthSeconds,
-            "videoThumbnail" => $mainResponseObject->microformat->playerMicroformatRenderer->thumbnail->thumbnails[0]->url
+            "videoThumbnail" => $mainResponseObject->microformat->playerMicroformatRenderer->thumbnail->thumbnails[0]->url,
+            "authorChannelId" => $mainResponseObject->microformat->playerMicroformatRenderer->externalChannelId,
         );
 
         // replace description text if description exists
@@ -244,7 +245,7 @@ if (!isset($_GET['v'])) {
 
                                                 <div class="tableSubTitle"><?php echo $videoDetails["videoTitle"]; ?></div>
                                                 <div style="font-size: 13px; font-weight: bold; text-align:center;">
-                                                    <a href="mailto:?subject=<?php echo $videoDetails["videoTitle"]; ?>&body=http://www.youtube.com/?v=<?php echo $id; ?>">Share</a>
+                                                    <a href="mailto:?subject=<?php echo $videoDetails["videoTitle"]; ?>&body=http://www.youtube.com/watch?v=<?php echo $id; ?>">Share</a>
                                                     // <a href="#comment">Comment</a>
                                                     // <a href="add_favorites.php?video_id=<?php echo $id; ?>" target="invisible" onclick="return FavoritesHandler();">Add to Favorites</a>
                                                     // <a href="outbox.php?user=<?php echo $videoDetails["videoAuthor"]; ?>&subject=Re: <?php echo $videoDetails['videoTitle']; ?>1">Contact Me</a>
@@ -274,8 +275,8 @@ if (!isset($_GET['v'])) {
                                                                 </div>
 
                                                                 <div class="watchAdded">
-                                                                    Added: <?php echo $videoDetails["videoUploadDate"]; ?> by <a href="profile.php?user=<?php echo $videoDetails["videoAuthor"]; ?>"><?php echo $videoDetails["videoAuthor"]; ?></a> //
-                                                                    <a href="profile_videos.php?user=<?php echo $videoDetails["videoAuthor"]; ?>">Videos</a> (64) | <a href="profile_favorites.php?user=<?php echo $videoDetails["videoAuthor"]; ?>">Favorites</a> (0) | <a href="profile_friends.php?user=<?php echo $videoDetails["videoAuthor"]; ?>">Friends</a> (16)
+                                                                    Added: <?php echo $videoDetails["videoUploadDate"]; ?> by <a href="profile.php?id=<?php echo $videoDetails['authorChannelId'];?>"><?php echo $videoDetails["videoAuthor"]; ?></a> //
+                                                                    <a href="profile_videos.php?id=<?php echo $videoDetails['authorChannelId'];?>">Videos</a> (64) | <a href="profile_favorites.php?user=<?php echo $videoDetails["videoAuthor"]; ?>">Favorites</a> (0) | <a href="profile_friends.php?user=<?php echo $videoDetails["videoAuthor"]; ?>">Friends</a> (16)
                                                                 </div>
 
                                                                 <div class="watchDetails">
@@ -303,7 +304,7 @@ if (!isset($_GET['v'])) {
 
                                                                     <div style="font-size: 11px; font-weight: bold; color: #CC6600; padding: 5px 0px 5px 0px;">Share this video! Copy and paste this link:</div>
                                                                     <div style="font-size: 11px; padding-bottom: 15px;">
-                                                                        <input name="video_link" type="text" onclick="javascript:document.linkForm.video_link.focus();document.linkForm.video_link.select();" value="http://www.youtube.com/?v=<?php echo $id; ?>" size="50" readonly="true" style="font-size: 10px; text-align: center;">
+                                                                        <input name="video_link" type="text" onclick="javascript:document.linkForm.video_link.focus();document.linkForm.video_link.select();" value="http://www.youtube.com/watch?v=<?php echo $id; ?>" size="50" readonly="true" style="font-size: 10px; text-align: center;">
                                                                     </div>
 
                                                                 </td>
