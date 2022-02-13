@@ -14,22 +14,7 @@ function homepageFeed($number)
     //print_r($feedobj);
     return $feedobj;
 }
-// check if box is video 
-$obj = homepageFeed(0);
-if (!isset($obj->richItemRenderer->content->videoRenderer)) {
-    $obj = homepageFeed(1);
-}
-
-// create details array
-$obj_accessor = $obj->richItemRenderer->content->videoRenderer; //->title->runs[0]->text;
-$obj_details = array(
-    "videoTitle" => $obj_accessor->title->runs[0]->text,
-    "videoThumbnail" => $obj_accessor->thumbnail->thumbnails[0]->url,
-    "videoId" => $obj_accessor->videoId,
-    "videoDescription" => $obj_accessor->descriptionSnippet->runs[0]->text,
-    "videoRuntime" => $obj_accessor->lengthText->simpleText,
-    "videoViewcount" => $obj_accessor->viewCountText->simpleText,
-);
+// ok we done now to the html section below...
 
 ?>
 <!DOCTYPE html>
@@ -219,7 +204,25 @@ $obj_details = array(
                                                                 Today's Featured Videos
                                                             </div>
                                                         </div>
+                                                        <?php
+                                                        for ($i = 0; $i < 5; $i++) {
+                                                            // check if box is video 
+                                                            $obj = homepageFeed($i);
+                                                            if (!isset($obj->richItemRenderer->content->videoRenderer)) {
+                                                                $obj = homepageFeed($i += 1);
+                                                            }
 
+                                                            // create details array
+                                                            $obj_accessor = $obj->richItemRenderer->content->videoRenderer;
+                                                            $obj_details = array(
+                                                                "videoTitle" => $obj_accessor->title->runs[0]->text,
+                                                                "videoThumbnail" => $obj_accessor->thumbnail->thumbnails[0]->url,
+                                                                "videoId" => $obj_accessor->videoId,
+                                                                "videoDescription" => $obj_accessor->descriptionSnippet->runs[0]->text,
+                                                                "videoRuntime" => $obj_accessor->lengthText->simpleText,
+                                                                "videoViewcount" => $obj_accessor->viewCountText->simpleText,
+                                                            );
+                                                        ?>
 
                                                         <div class="moduleEntry">
                                                             <table width="565" cellspacing="0" cellpadding="0" border="0">
@@ -238,7 +241,7 @@ $obj_details = array(
                                                                 </tbody>
                                                             </table>
                                                         </div>
-
+                                                        <?php }?>
 
                                                     </td>
                                                     <td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
