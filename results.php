@@ -37,8 +37,8 @@ if (!isset($_GET['search'])) {
     }
 
 ?>
-<!DOCTYPE html>
-<html>
+    <!DOCTYPE html>
+    <html>
 
     <head>
 
@@ -315,6 +315,8 @@ if (!isset($_GET['search'])) {
                                 $videoAuthor = $items[$i]->videoRenderer->longBylineText->runs[0]->text;
                                 $videoViews = $items[$i]->videoRenderer->viewCountText->simpleText;
                                 $videoRuntime = $items[$i]->videoRenderer->lengthText->simpleText;
+                                $videoUploadTime = $items[$i]->videoRenderer->publishedTimeText->simpleText;
+                                $authorChannelId = $items[$i]->videoRenderer->longBylineText->runs[0]->navigationEndpoint->browseEndpoint->browseId;
                         ?>
                                 <div class="moduleEntry">
                                     <table width="100%" cellspacing="0" cellpadding="0" border="0">
@@ -338,7 +340,7 @@ if (!isset($_GET['search'])) {
                                                     </div>
                                                     <div class="moduleEntryDetails">Channels // <a href="/channels_portal.php?c=3">Education &amp; Instructional</a> : <a href="/channels_portal.php?c=8">Hobbies &amp; Interests</a> : <a href="/channels_portal.php?c=9">Humor</a>
                                                     </div>
-                                                    <div class="moduleEntryDetails">Added: 1 week ago by <a href="/profile?user=<?php echo $videoAuthor ?>"><?php echo $videoAuthor; ?></a></div>
+                                                    <div class="moduleEntryDetails">Added: <?php echo $videoUploadTime; ?> by <a href="profile.php?id=<?php echo $authorChannelId; ?>"><?php echo $videoAuthor; ?></a></div>
                                                     <div class="moduleEntryDetails">Runtime: <?php echo $videoRuntime; ?> | Views: <?php echo $videoViews; ?> | Comments: 0</div>
 
                                                 </td>
@@ -381,35 +383,7 @@ if (!isset($_GET['search'])) {
         </tbody>
         </table>
 
-        <table cellspacing="0" cellpadding="10" border="0" align="center">
-            <tbody>
-                <tr>
-                    <td valign="center" align="center">
-                        <span class="footer"><a href="/blog">Our Blog</a> <img src="yts/imgbin/new.gif"> | <a href="/t/about">About Us</a> | <a href="/help.php">Help</a> | <a href="/dev">Developers</a> | <a href="/t/terms">Terms of Use</a> | <a href="/t/privacy">Privacy Policy</a> | <a href="/t/jobs">Jobs</a>
-                            <br>
-                            <br>
-                            Copyright © 2005 YouTube, Inc.™ | <a href="/rss/global/recently_added.rss"><img src="yts/imgbin/rss.gif" style="vertical-align: text-top;" width="36" height="14" border="0"></a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div id="sheet" style="position:fixed; top:0px; visibility:hidden; width:100%; text-align:center;">
-            <table width="100%">
-                <tbody>
-                    <tr>
-                        <td align="center">
-                            <div id="sheetContent" style="filter:alpha(opacity=50); -moz-opacity:0.5; opacity:0.5; border: 1px solid black; background-color:#cccccc; width:40%; text-align:left;"></div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div id="tooltip"></div>
-
-
-
-
+        <?php include("includes/html/footer.php")?>
 
     </body>
 
