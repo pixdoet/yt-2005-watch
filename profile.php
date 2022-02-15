@@ -25,7 +25,7 @@ if (!isset($_GET['id'])) {
             "rss" => "https://www.youtube.com/feeds/videos.xml?channel_id=" . $id,
         );
     }
-    
+
     // ok now go to the HTML section below........
 ?>
     <!DOCTYPE html>
@@ -275,13 +275,12 @@ if (!isset($_GET['id'])) {
                                                                     <tbody>
                                                                         <tr>
                                                                             <td align="center">
-                                                                                <a href="watch.php?v=OQokkrX4TKI">
-                                                                                    <!--img src="get_still.php?video_id=OQokkrX4TKI" class="moduleFeaturedThumb" width="120" height="90"-->
+                                                                                <a href="#">
                                                                                 </a>
-                                                                                <div class="moduleFeaturedTitle"><a href="watch.php?v=OQokkrX4TKI">starbreakdance_amyspear.com.mov</a></div>
+                                                                                <div class="moduleFeaturedTitle"><a href="#">Coming soon!</a></div>
                                                                                 <div class="moduleFeaturedDetails">Added: June 15, 2005 <br>by <a href="profile.php?id=<?php echo $id; ?>"><?php echo $cDetails['name']; ?></a></div>
-                                                                                <div class="moduleFeaturedDetails">Views: 351</div>
-                                                                                <div class="moduleFeaturedDetails">Comments: 2</div>
+                                                                                <div class="moduleFeaturedDetails">Views: 0</div>
+                                                                                <div class="moduleFeaturedDetails">Comments: 0</div>
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
