@@ -13,7 +13,7 @@ A YouTube frontend written with the YouTubeI, otherwise more commonly known as t
 ## Directory sturcture
 - `/api/`: Contains the API based off the code of the frontend (currently not used by the frontend itself) 
 - `/includes/`: Contains include files for the PHP code
-    - `html`: Contains HTML files used for includes (no results, header etc)
+    - `/includes/html/`: Contains HTML files used for includes (no results, header etc)
 - `/yts/`: Contains static files (YouTube Static)
 
 
