@@ -4,7 +4,7 @@
 include("includes/youtubei/createRequest.php");
 
 if (!isset($_GET['v'])) {
-    include('includes/novideo.php');
+    include('includes/html/novideo.php');
 } else {
     $id = $_GET['v'];
 

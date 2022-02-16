@@ -4,7 +4,7 @@ include("includes/youtubei/createRequest.php");
 include("includes/config.inc.php");
 
 if (!isset($_GET['search'])) {
-    include("includes/noquery.php");
+    include("includes/html/noquery.php");
 } else {
     $query = $_GET['search'];
     $mainResponseObject = json_decode(requestSearch($query));
@@ -33,7 +33,7 @@ if (!isset($_GET['search'])) {
         // ok we done here now go to the HTML section below...
 
     } else {
-        require('noresults.php');
+        require('includes/html/noresults.php');
     }
 
 ?>
