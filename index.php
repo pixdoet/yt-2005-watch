@@ -35,7 +35,7 @@ function homepageFeed($number)
         <tbody>
             <tr>
                 <td style="padding-bottom: 25px;" bgcolor="#FFFFFF">
-                    <?php include("includes/html/header.php");?>
+                    <?php include("includes/html/header.php"); ?>
 
                     <div style="padding: 0px 5px 0px 5px;">
 
@@ -118,6 +118,9 @@ function homepageFeed($number)
                                                                     "videoDescription" => $obj_accessor->descriptionSnippet->runs[0]->text,
                                                                     "videoRuntime" => $obj_accessor->lengthText->simpleText,
                                                                     "videoViewcount" => $obj_accessor->viewCountText->simpleText,
+                                                                    "videoAuthor" => $obj_accessor->shortBylineText->runs[0]->text,
+                                                                    "videoUploadDate" => $obj_accessor->publishedTimeText->simpleText,
+                                                                    "authorChannelId" => $obj_accessor->shortBylineText->runs[0]->navigationEndpoint->browseEndpoint->browseId,
                                                                 );
                                                         ?>
 
@@ -131,7 +134,7 @@ function homepageFeed($number)
                                                                                     <div class="moduleEntryDescription"><?php echo $obj_details['videoDescription']; ?></div>
                                                                                     <div class="moduleEntryTags">
                                                                                         Tags // <a href="results.php?search=Martinez">Martinez</a> : <a href="results.php?search=Real">Real</a> : <a href="results.php?search=NorCal">NorCal</a> : <a href="results.php?search=Awesome">Awesome</a> : </div>
-                                                                                    <div class="moduleEntryDetails">Added: July 31, 2005 by <a href="profile.php?user=icer2k5">icer2k5</a></div>
+                                                                                    <div class="moduleEntryDetails">Added: <?php echo $obj_details['videoUploadDate']; ?> by <a href="profile.php?id=<?php echo $obj_details['authorChannelId']; ?>"><?php echo $obj_details['videoAuthor']; ?></a></div>
                                                                                     <div class="moduleEntryDetails">Views: <?php echo $obj_details['videoViewcount']; ?> | Comments: 0</div>
                                                                                 </td>
                                                                             </tr>

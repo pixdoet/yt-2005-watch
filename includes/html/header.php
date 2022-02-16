@@ -38,14 +38,14 @@
                 <table cellspacing="0" cellpadding="2" border="0">
                     <tbody>
                         <tr>
-                            <form method="GET" action="results.php"></form>
-                            <td>
-                                <input type="text" value="" name="search" size="30" maxlength="128" style="color:#ff3333; font-size: 14px; padding: 2px;">
-                            </td>
-                            <td>
-                                <input type="submit" value="Search Videos">
-                            </td>
-
+                            <form method="GET" action="results.php">
+                                <td>
+                                    <input type="text" value="" name="search" size="30" maxlength="128" style="color:#ff3333; font-size: 14px; padding: 2px;">
+                                </td>
+                                <td>
+                                    <input type="submit" value="Search Videos">
+                                </td>
+                            </form>
 
                         </tr>
                     </tbody>
