@@ -1,5 +1,6 @@
 # STOP. ADDING. .DS_STORE. FILES.
 *.DS_STORE
+*.DS_Store
 
 cookies.txt
 cookies_old.txt
