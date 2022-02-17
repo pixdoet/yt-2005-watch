@@ -1,5 +1,5 @@
 # yt-2005-watch  
-A YouTube frontend written with the YouTubeI, otherwise more commonly known as the InnerTube API.  
+A YouTube frontend written with the YouTubeI api, otherwise more commonly known as the InnerTube API.  
 
 ## Requirements
 - Webserver (preferably, Apache)
