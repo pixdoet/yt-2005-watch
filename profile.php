@@ -29,7 +29,7 @@ if (!isset($_GET['id'])) {
 
     // ok now go to the HTML section below........
 ?>
-    <!DOCTYPE html>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
     <html>
 
     <head>
@@ -46,7 +46,7 @@ if (!isset($_GET['id'])) {
             <tbody>
                 <tr>
                     <td style="padding-bottom: 25px;" bgcolor="#FFFFFF">
-                        <?php include("includes/html/header.php");?>
+                        <?php include("includes/html/header.php"); ?>
                         <div style="padding: 0px 5px 0px 5px;">
                             <table width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
                                 <tbody>
@@ -206,7 +206,7 @@ if (!isset($_GET['id'])) {
                 </tr>
             </tbody>
         </table>
-        <?php include("includes/html/footer.php");?>
+        <?php include("includes/html/footer.php"); ?>
     </body>
 
     </html>
