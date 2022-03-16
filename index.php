@@ -128,7 +128,7 @@ function homepageFeed($number)
                                                                     <table width="565" cellspacing="0" cellpadding="0" border="0">
                                                                         <tbody>
                                                                             <tr valign="top">
-                                                                                <td><a href="<?php echo $obj_details['videoId']; ?>"><img src="<?php echo $obj_details['videoThumbnail']; ?>" class="moduleEntryThumb" width="120" height="90"></a></td>
+                                                                                <td><a href="watch.php/?v=<?php echo $obj_details['videoId']; ?>"><img src="<?php echo $obj_details['videoThumbnail']; ?>" class="moduleEntryThumb" width="120" height="90"></a></td>
                                                                                 <td width="100%">
                                                                                     <div class="moduleEntryTitle"><a href="watch.php?v=<?php echo $obj_details['videoId'] ?>"><?php echo $obj_details['videoTitle']; ?></a></div>
                                                                                     <div class="moduleEntryDescription"><?php echo $obj_details['videoDescription']; ?></div>
