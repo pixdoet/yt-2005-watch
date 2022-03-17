@@ -1,5 +1,5 @@
 {% extends "base.html.twig" %}
-{% block content %}
+{% block pageContent %}
 	<div style="padding: 0px 5px 0px 5px;">
 
 		<iframe id="invisible" name="invisible" src="" scrolling="yes" marginheight="0" marginwidth="0" width="0" height="0" frameborder="0"></iframe>
@@ -22,7 +22,7 @@
 
 						<div style="text-align: center; padding-bottom: 10px;">
 							<div id="flashcontent" class="videoPlayerHolder">
-								{{ videoHtml }}
+								{{ videoHtml | striptags("<video><span>") | raw}}
 							</div>
 						</div>
 

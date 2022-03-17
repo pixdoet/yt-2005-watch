@@ -35,7 +35,7 @@ if (!isset($_GET['v'])) {
             "videoRuntime" => $mainResponseObject->microformat->playerMicroformatRenderer->lengthSeconds,
             "videoThumbnail" => $mainResponseObject->microformat->playerMicroformatRenderer->thumbnail->thumbnails[0]->url,
             "authorChannelId" => $mainResponseObject->microformat->playerMicroformatRenderer->externalChannelId,
-            "videoConvertedRuntime" => gmdate("i:s", $videoDetails["videoRuntime"]),
+            "videoConvertedRuntime" => gmdate("i:s", $mainResponseObject->microformat->playerMicroformatRenderer->lengthSeconds),
         );
 
         // replace description text if description exists
@@ -59,10 +59,10 @@ if (!isset($_GET['v'])) {
         // video source file
         if (isset($mainResponseObject->streamingData->formats[0]->url)) {
             // generate video tag HTML
-            $videoHtml = sprintf('<video controls src="%s" class="video-player googlevideo-player" style="width: 427px; margin:center;">', $mainResponseObject->streamingData->formats[0]->url);
+            $videoHtml = sprintf('<video controls src="%s" class="has-video googlevideo" style="width: 427px; height: margin:center;">', $mainResponseObject->streamingData->formats[0]->url);
         } else {
             // generate error text HTML
-            $videoHtml = sprintf('Video unavailable for playback. <a href="https://youtube.com/watch?v=%s">Watch on YouTube</a>', $id);
+            $videoHtml = sprintf('<span class="noVideoError">Video unavailable for playback. <a href="https://youtube.com/watch?v=%s">Watch on YouTube</a></span>', $id);
         }
 
         // start writing to twiG

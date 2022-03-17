@@ -6,21 +6,6 @@ function requestBrowse($brid)
 {
   // endpoint: /youtubei/v1/browse
 
-  /* 
-    This is the main, and most important youtubei endpoint that we need.
-    Browse requests data such as video suggestions, channel videos and 
-    subscriptions, among other useful stuff that, when PBJ was still used,
-    was seperated into tons of different endpoints.
-
-    Depending on the "browse id", this section can either require or dont 
-    require a SAPISID to return data. We'll assume everything here needs
-    it tho since doing stuff seperately is annoying as fuck.
-
-    This PHP function takes one argument, $brid, which is the "browse id"
-    mentioned earlier in the description. I'll leave everything about this
-    in the documentation that's horribly out of date and probably not going 
-    to exist.
-  */
   include("includes/config.inc.php");
   $req_arr = json_encode(
     array(
@@ -389,15 +374,13 @@ function requestPlayer($videoId)
   return $result;
 }
 
-function requestChannel($channelId,$type)
+function requestChannel($channelId, $type)
 {
   // first get browse endpoints, form a request to normal browse
   $getEp = json_decode(requestBrowse($channelId));
-  if($getEp)
-  {
+  if ($getEp) {
     $ep = $getEp->contents->twoColumnBrowseResultsRenderer->tabs;
-    switch($type)
-    {
+    switch ($type) {
       case "videos":
         $brEp = $ep[1]->tabRenderer->endpoint->browseEndpoint->params;
         break;
@@ -589,7 +572,7 @@ function requestChannel($channelId,$type)
 }
 
 function requestSearch($query)
-{  
+{
   // endpoint: /youtube1/v1/search
   /*
     Search functions using youtubei.
