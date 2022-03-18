@@ -23,9 +23,9 @@
 						{% include("header.twig") %}
 					</td>
 				</tr>
+				{% block pageContent %}{% endblock %}
 			</tbody>
 		</table>
-		{% block pageContent %}{% endblock %}
 		{% include("footer.twig") %}
 	</body>
 </html>
