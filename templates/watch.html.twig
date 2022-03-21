@@ -11,7 +11,7 @@
 
 						<div class="tableSubTitle">{{ videoTitle }}</div>
 						<div style="font-size: 13px; font-weight: bold; text-align:center;">
-							<a href="mailto:?subject={{ videoTitle }} ?>&body=http://www.youtube.com/watch?v={{ videoId }}">Share</a>
+							<a href="mailto:?subject={{ videoTitle }}&body=http://www.youtube.com/watch?v={{ videoId }}">Share</a>
 							//
 							<a href="#comment">Comment</a>
 							//
@@ -82,7 +82,7 @@
 
 											<div style="font-size: 11px; font-weight: bold; color: #CC6600; padding: 5px 0px 5px 0px;">Share this video! Copy and paste this link:</div>
 											<div style="font-size: 11px; padding-bottom: 15px;">
-												<input name="video_link" type="text" onclick="javascript:document.linkForm.video_link.focus();document.linkForm.video_link.select();" value="http://www.youtube.com/watch?v={{ videoId }}" size="50" readonly="true" style="font-size: 10px; text-align: center;">
+												<input name="video_link" type="text" onclick="this.select();" value="http://www.youtube.com/watch?v={{ videoId }}" size="50" readonly="true" style="font-size: 10px; text-align: center;">
 											</div>
 
 										</td>
