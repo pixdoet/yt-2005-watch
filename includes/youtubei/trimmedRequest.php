@@ -190,8 +190,6 @@ function requestPlayer($videoId)
             array(
                 'client' =>
                 array(
-                    'hl' => 'en',
-                    'gl' => 'MY',
                     'visitorData' => 'Cgtjc1hsUzJrS2tlWSjImoiNBg%3D%3D',
                     'userAgent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:94.0) Gecko/20100101 Firefox/94.0,gzip(gfe)',
                     'clientVersion' => '2.20211124.00.00',
@@ -204,18 +202,9 @@ function requestPlayer($videoId)
                 'contentPlaybackContext' =>
                 array(
                     'currentUrl' => '/watch?v=' . $videoId,
-                    'vis' => 0,
-                    'splay' => false,
-                    'autoCaptionsDefaultOn' => true,
-                    'autonavState' => 'STATE_OFF',
-                    'html5Preference' => 'HTML5_PREF_WANTS',
-                    'signatureTimestamp' => 18954,
                     'referer' => 'https://www.youtube.com/',
-                    'lactMilliseconds' => '-1',
                 ),
             ),
-            'racyCheckOk' => false,
-            'contentCheckOk' => false,
         )
     );
     $ch = curl_init();
