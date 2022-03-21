@@ -10,7 +10,7 @@ use Twig\Loader\FilesystemLoader;
 $loader = new FilesystemLoader(__DIR__ . '/templates');
 $twig = new Environment($loader);
 
-include("includes/youtubei/createRequest.php");
+include("includes/youtubei/trimmedRequest.php");
 
 if (!isset($_GET['v'])) {
     include('includes/html/novideo.php');

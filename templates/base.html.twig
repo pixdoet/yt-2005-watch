@@ -16,7 +16,7 @@
 	</head>
 
 	<body>
-		<table width="800" cellspacing="0" cellpadding="0" border="0" align="center">
+		<table class="pageframe" width="800" cellspacing="0" cellpadding="0" border="0" align="center">
 			<tbody>
 				<tr>
 					<td style="padding-bottom: 25px;" bgcolor="#FFFFFF">
@@ -24,8 +24,8 @@
 					</td>
 				</tr>
 			</tbody>
+			{% block pageContent %}{% endblock %}
 		</table>
-		{% block pageContent %}{% endblock %}
 		{% include("footer.twig") %}
 	</body>
 </html>
