@@ -50,10 +50,11 @@ if (!isset($_GET['v'])) {
             if ($tagcount >= 1) {
                 $tags = $tagarr;
             } else {
-                $tags = array("None");
+                $tags = array(0 => "None");
             }
         } else {
             $tagcount = 0;
+            $tags = array(0 => "None");
         }
 
         // video source file
