@@ -10,10 +10,15 @@ use Twig\Loader\FilesystemLoader;
 $loader = new FilesystemLoader(__DIR__ . '/templates');
 $twig = new Environment($loader);
 
-include("includes/youtubei/createRequest.php");
+include("includes/youtubei/player.php");
 
 if (!isset($_GET['v'])) {
-    include('includes/html/novideo.php');
+    $twig->render(
+        "novideo.html.twig",
+        [
+            "id" => "#",
+        ]
+    );
 } else {
     $id = $_GET['v'];
 
@@ -23,7 +28,12 @@ if (!isset($_GET['v'])) {
 
     // check if video exists
     if (!isset($mainResponseObject->videoDetails->title)) {
-        include('includes/novideo.php');
+        $twig->render(
+            "novideo.html.twig",
+            [
+                "id" => $id,
+            ]
+        );
     } else {
         $videoDetails = array(
             "videoTitle" => $mainResponseObject->videoDetails->title,
