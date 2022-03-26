@@ -54,6 +54,7 @@ if (!isset($_GET['v'])) {
             }
         } else {
             $tagcount = 0;
+            $tags = array(0 => "None");
         }
 
         // video source file
