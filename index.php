@@ -1,5 +1,5 @@
 <?php
-include("includes/youtubei/createRequest.php");
+include("includes/youtubei/browse.php");
 
 // form a youtubei request to /youtubei/v1/browse, then get the first 10 results
 // we then fetch data with /youtube1/v1/player 
