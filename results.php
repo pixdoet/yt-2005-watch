@@ -1,6 +1,6 @@
 <?php
 
-include("includes/youtubei/createRequest.php");
+include("includes/youtubei/search.php");
 include("includes/config.inc.php");
 
 if (!isset($_GET['search'])) {
