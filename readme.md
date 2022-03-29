@@ -13,7 +13,7 @@ A YouTube frontend written with the YouTubeI api, otherwise more commonly known 
 ## Directory structure
 - `/includes/`: Contains include files for the PHP code
     - `/includes/html/`: Contains HTML files used for includes (no results, header etc)
-- `/templates`: HTML templates for Twig
+- `/templates/`: HTML templates for Twig
 - `/yts/`: Contains static files (YouTube Static)
 
 
