@@ -7,7 +7,7 @@ use Twig\Loader\FilesystemLoader;
 $loader = new FilesystemLoader(__DIR__ . "/templates");
 $twig = new Environment($loader);
 
-include("includes/youtubei/createRequest.php");
+include("includes/youtubei/browse.php");
 include("includes/config.inc.php");
 
 if (!isset($_GET['id'])) {
