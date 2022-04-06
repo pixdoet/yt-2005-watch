@@ -11,3 +11,5 @@ responses/*
 
 # ignore top secret project
 dynamicpages/*
+
+*secret.php
