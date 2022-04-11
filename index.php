@@ -115,13 +115,18 @@ function homepageFeed($number)
                                                                     "videoTitle" => $obj_accessor->title->runs[0]->text,
                                                                     "videoThumbnail" => $obj_accessor->thumbnail->thumbnails[0]->url,
                                                                     "videoId" => $obj_accessor->videoId,
-                                                                    "videoDescription" => $obj_accessor->descriptionSnippet->runs[0]->text,
+                                                                    "videoDescription" => "<i>No description</i>",
+                                                                    // "videoDescription" => $obj_accessor->descriptionSnippet->runs[0]->text,
                                                                     "videoRuntime" => $obj_accessor->lengthText->simpleText,
                                                                     "videoViewcount" => $obj_accessor->viewCountText->simpleText,
                                                                     "videoAuthor" => $obj_accessor->shortBylineText->runs[0]->text,
                                                                     "videoUploadDate" => $obj_accessor->publishedTimeText->simpleText,
                                                                     "authorChannelId" => $obj_accessor->shortBylineText->runs[0]->navigationEndpoint->browseEndpoint->browseId,
                                                                 );
+                                                                // check for videos without description
+                                                                if (isset($obj_accessor->descriptionSnippet->runs[0]->text)) {
+                                                                    $obj_details["videoDescription"] = $obj_accessor->descriptionSnippet->runs[0]->text;
+                                                                }
                                                         ?>
 
                                                                 <div class="moduleEntry">
