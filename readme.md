@@ -24,4 +24,4 @@ Apache 2.0
 
 ### Publicly maintained instances
 Stable: http://cleantalk.great-site.net  
-Dev: https://hiew.me/yt2005
+Dev: https://rehike.hiew.me
