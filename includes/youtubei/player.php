@@ -10,8 +10,8 @@ function requestPlayer($videoId)
                 'client' =>
                 array(
                     'hl' => 'en',
-                    'clientName' => 'ANDROID',
-                    'clientVersion' => '0.20211124.00.00',
+                    'clientName' => 'WEB',
+                    'clientVersion' => '2.20211124.00.00',
                     'mainAppWebInfo' =>
                     array(
                         'graftUrl' => '/watch?v=' . $videoId,
