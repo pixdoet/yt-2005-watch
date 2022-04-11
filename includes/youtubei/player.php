@@ -10,7 +10,7 @@ function requestPlayer($videoId)
                 'client' =>
                 array(
                     'hl' => 'en',
-                    'clientName' => 'WEB',
+                    'clientName' => 'ANDROID',
                     'clientVersion' => '2.20211124.00.00',
                     'mainAppWebInfo' =>
                     array(
