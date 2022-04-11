@@ -30,7 +30,7 @@
 							<tbody>
 								<tr>
 									<td>
-										<div class="watchDescription">{{ videoDescription }}<div class="watchAdded" style="margin-top: 5px;"></div>
+										<div class="watchDescription">{{ videoDescription | striptags("<span><i>") | raw }}<div class="watchAdded" style="margin-top: 5px;"></div>
 										</div>
 										<div class="watchTags">Tags //
 											{% for tag in videoTags %}
