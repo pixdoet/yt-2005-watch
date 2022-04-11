@@ -453,6 +453,8 @@ a.title:hover {
     padding-bottom: 5px;
     color: #000;
     border-bottom: 1px dashed #CCC;
+    /* fix for line breaks in youtubei response */
+    white-space: pre-line;
 }
 
 .watchTags {
