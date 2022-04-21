@@ -11,11 +11,7 @@ function requestPlayer($videoId)
                 array(
                     'hl' => 'en',
                     'clientName' => 'ANDROID',
-<<<<<<< HEAD:includes/internal/youtubei/player.php
                     'clientVersion' => '15.12.11',
-=======
-                    'clientVersion' => '2.20211124.00.00',
->>>>>>> parent of 9fc73c2 (Player experiments 4):includes/youtubei/player.php
                     'mainAppWebInfo' =>
                     array(
                         'graftUrl' => '/watch?v=' . $videoId,
