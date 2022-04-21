@@ -10,8 +10,8 @@ function requestPlayer($videoId)
                 'client' =>
                 array(
                     'hl' => 'en',
-                    'clientName' => 'WEB',
-                    'clientVersion' => '2.20211124.00.00',
+                    'clientName' => 'ANDROID',
+                    'clientVersion' => '15.12.11',
                     'mainAppWebInfo' =>
                     array(
                         'graftUrl' => '/watch?v=' . $videoId,
@@ -31,7 +31,9 @@ function requestPlayer($videoId)
         "Content-Type: application/json",
         // "Referer: https://youtube.com/watch?v=" . $videoId,
         "X-Goog-AuthUser: 0",
-        "X-Origin: https://www.youtube.com"
+        "X-Origin: https://www.youtube.com",
+        "X-YouTube-Client-Name: ANDROID",
+        "X-YouTube-Client-Version: 15.12.11",
     ));
     curl_setopt($ch, CURLOPT_POSTFIELDS, $req_arr);
     curl_setopt($ch, CURLOPT_USERAGENT, $ua);
