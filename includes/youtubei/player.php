@@ -29,7 +29,6 @@ function requestPlayer($videoId)
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         "Authorization: ", //sapisidhash,
         "Content-Type: application/json",
-        // "Referer: https://youtube.com/watch?v=" . $videoId,
         "X-Goog-AuthUser: 0",
         "X-Origin: https://www.youtube.com",
     ));
@@ -88,5 +87,6 @@ function requestVideoSrc($videoId)
         return $videoHtml;
     } else {
         $videoHtml = sprintf('<span class="noVideoError">Video unavailable for playback. <a href="https://youtube.com/watch?v=%s">Watch on YouTube</a></span>', $videoId);
+        return $videoHtml;
     }
 }
