@@ -68,13 +68,7 @@ if (!isset($_GET['v'])) {
         }
 
         // video source file
-        if (isset($mainResponseObject->streamingData->formats[0]->url)) {
-            // generate video tag HTML
-            $videoHtml = sprintf('<video controls src="%s" class="has-video googlevideo" style="width: 427px; height: margin:center;">', $mainResponseObject->streamingData->formats[0]->url);
-        } else {
-            // generate error text HTML
-            $videoHtml = sprintf('<span class="noVideoError">Video unavailable for playback. <a href="https://youtube.com/watch?v=%s">Watch on YouTube</a></span>', $id);
-        }
+        $videoHtml = requestVideoSrc($id);
 
         // start writing to twiG
 
