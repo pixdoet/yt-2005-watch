@@ -72,22 +72,42 @@ if (!isset($_GET['v'])) {
 
         // start writing to twiG
 
-        echo $twig->render(
-            "watch.html.twig",
-            [
-                "videoId" => $id,
-                "videoHtml" => $videoHtml,
-                "videoTags" => $tags,
-                "videoDescription" => $videoDetails['videoDescription'],
-                "videoTitle" => $videoDetails['videoTitle'],
-                "videoViews" => $videoDetails['videoViews'],
-                "videoAuthor" => $videoDetails['videoAuthor'],
-                "videoUploadDate" => $videoDetails['videoUploadDate'],
-                "videoRuntime" => $videoDetails['videoRuntime'],
-                "videoThumbnail" => $videoDetails['videoThumbnail'],
-                "authorChannelId" => $videoDetails['authorChannelId'],
-                "videoConvertedRuntime" => $videoDetails['videoConvertedRuntime'],
-            ]
-        );
+        if (isset($_GET['2012']) && $_GET['2012'] == "true") {
+            echo $twig->render(
+                "watch2012.html.twig",
+                [
+                    "videoId" => $id,
+                    "videoHtml" => $videoHtml,
+                    "videoTags" => $tags,
+                    "videoDescription" => $videoDetails['videoDescription'],
+                    "videoTitle" => $videoDetails['videoTitle'],
+                    "videoViews" => $videoDetails['videoViews'],
+                    "videoAuthor" => $videoDetails['videoAuthor'],
+                    "videoUploadDate" => $videoDetails['videoUploadDate'],
+                    "videoRuntime" => $videoDetails['videoRuntime'],
+                    "videoThumbnail" => $videoDetails['videoThumbnail'],
+                    "authorChannelId" => $videoDetails['authorChannelId'],
+                    "videoConvertedRuntime" => $videoDetails['videoConvertedRuntime'],
+                ]
+            );
+        } else {
+            echo $twig->render(
+                "watch.html.twig",
+                [
+                    "videoId" => $id,
+                    "videoHtml" => $videoHtml,
+                    "videoTags" => $tags,
+                    "videoDescription" => $videoDetails['videoDescription'],
+                    "videoTitle" => $videoDetails['videoTitle'],
+                    "videoViews" => $videoDetails['videoViews'],
+                    "videoAuthor" => $videoDetails['videoAuthor'],
+                    "videoUploadDate" => $videoDetails['videoUploadDate'],
+                    "videoRuntime" => $videoDetails['videoRuntime'],
+                    "videoThumbnail" => $videoDetails['videoThumbnail'],
+                    "authorChannelId" => $videoDetails['authorChannelId'],
+                    "videoConvertedRuntime" => $videoDetails['videoConvertedRuntime'],
+                ]
+            );
+        }
     }
 }
