@@ -1,28 +1,29 @@
 <html lang="en">
-	<!-- machid: sNW5tN3Z2SWdXaDV2V0RBS3hxSWFpVWFhZjV0ZmppSU8yamxpNUhoeU56WHZwUGRTaXVZendB --><!--
-		  --begin secret little message :)--
-		  
-		  ---PLANS FOR EPICPANDA FRONTEND RELEASE---
-		  Introduction:
-		  Epicpanda is an experiment launched by YouTube in 2012. However, unlike most YouTube experiments, this one was extremely limited and private.
-		  There are only around 4 archives of it anywhere on the internet: homepage, feeds and search respectively. There exists only a recreated watch
-		  page (this page), and no channels page.
-		  
-		  Much of epicpanda experiments would turn into Hitchhiker: white backgrounds, channels4, watch7 and more. Some stuff, like epicpanda c4,
-		  were heavily modified before introduced into hitchhiker.
-		
-		  This page is a recreation, however it's most accurate to what an epicpanda watch page would look like.
-		
-		  Roadmap:
-		  1. Introduce archived pages first: feeds, homepage and search
-		  2. Do watch page (this page)
-		  3. Recreate epicpanda c4 from scratch
-		
-		  Code of this will not be released, as it's extremely dirty and hacky. We'll probably base this frontend on crazyfrogepic's late-2012 frontend, as it's a readily available
-		  template for us to use, we just need to modify some stuff.
-		
-		  --end secret little message :)--
-		-->
+	<!-- machid: sNW5tN3Z2SWdXaDV2V0RBS3hxSWFpVWFhZjV0ZmppSU8yamxpNUhoeU56WHZwUGRTaXVZendB -->
+	<!--
+				  --begin secret little message :)--
+				  
+				  ---PLANS FOR EPICPANDA FRONTEND RELEASE---
+				  Introduction:
+				  Epicpanda is an experiment launched by YouTube in 2012. However, unlike most YouTube experiments, this one was extremely limited and private.
+				  There are only around 4 archives of it anywhere on the internet: homepage, feeds and search respectively. There exists only a recreated watch
+				  page (this page), and no channels page.
+				  
+				  Much of epicpanda experiments would turn into Hitchhiker: white backgrounds, channels4, watch7 and more. Some stuff, like epicpanda c4,
+				  were heavily modified before introduced into hitchhiker.
+				
+				  This page is a recreation, however it's most accurate to what an epicpanda watch page would look like.
+				
+				  Roadmap:
+				  1. Introduce archived pages first: feeds, homepage and search
+				  2. Do watch page (this page)
+				  3. Recreate epicpanda c4 from scratch
+				
+				  Code of this will not be released, as it's extremely dirty and hacky. We'll probably base this frontend on crazyfrogepic's late-2012 frontend, as it's a readily available
+				  template for us to use, we just need to modify some stuff.
+				
+				  --end secret little message :)--
+				-->
 		<head>
 			<script>
 var yt = yt || {};
@@ -57,7 +58,9 @@ yt.timing['srt'] = Math.floor(window.chrome.csi().pageT);
 if (window.msPerformance && window.msPerformance.timing) {
 yt.timing['srt'] = window.msPerformance.timing.responseStart - window.msPerformance.timing.navigationStart;
 }
-		</script><title>YouTube - Broadcast Yourself.
+		</script>
+			<title>
+		YouTube - Broadcast Yourself.
 		</title>
 		<link rel="search" type="application/opensearchdescription+xml" href="https://www.youtube.com/opensearch?locale=en_US" title="YouTube Video Search"> <link rel="shortcut icon" href="https://s.ytimg.com/yt/favicon-vfldLzJxy.ico" type="image/x-icon">
 		<link rel="alternate" media="handheld" href="http://m.youtube.com/index?desktop_uri=%2F&amp;gl=US">
@@ -455,7 +458,7 @@ yt.timing.tick("bf");
 }
 							</script>
 
-							<div class="flash-player" id="watch7-player"></div>
+							<div class="flash-player" id="watch7-player">{{ videoHtml | striptags("<video><span><a>") | raw}}</div>
 							<script>
 								(function () {
 var swf = "      \u003cembed type=\"application\/x-shockwave-flash\"     s\u0072c=\"http:\/\/s.ytimg.com\/yt\/swfbin\/watch_as3-vflCKdyvw.swf\"     w\u0069dth=\"640\" id=\"movie_player\" h\u0065ight=\"390\"    flashvars=\"ttsurl=http%3A%2F%2Fwww.youtube.com%2Fapi%2Ftimedtext%3Flocale%3Den_US\u0026amp;fexp=909520%2C919102%2C911639%2C913602%2C915507%2C907217%2C921602%2C922401%2C922600%2C919804%2C924500%2C924700%2C913547%2C904721%2C920706%2C924402%2C907344%2C912706%2C900816%2C902518%2C909414\u0026amp;ptk=youtube_none\u0026amp;uid=4QobU6STFB0P71PMvOGN5A\u0026amp;vid=jNQXAC9IVRw\u0026amp;allow_embed=1\u0026amp;iv_close_button=0\u0026amp;is_doubleclick_tracked=1\u0026amp;rmktEnabled=1\u0026amp;account_playback_token=\u0026amp;autohide=2\u0026amp;csi_page_type=watch5\u0026amp;keywords=jawed%2Ckarim%2Celephant%2Czoo%2Cyoutube%2Cfirst%2Cvideo%2Cyakov%2Clapitsky\u0026amp;cr=US\u0026amp;rmktPingThreshold=0\u0026amp;cc3_module=http%3A%2F%2Fs.ytimg.com%2Fyt%2Fswfbin%2Fsubtitles3_module-vflmB27Yx.swf\u0026amp;enablecsi=1\u0026amp;iv3_module=http%3A%2F%2Fs.ytimg.com%2Fyt%2Fswfbin%2Fiv3_module-vfl6RvMmW.swf\u0026amp;fmt_list=43%2F320x240%2F99%2F0%2F0%2C34%2F320x240%2F9%2F0%2F115%2C18%2F320x240%2F9%2F0%2F115%2C5%2F320x240%2F7%2F0%2F0%2C17%2F176x144%2F99%2F0%2F0\u0026amp;title=Me+at+the+zoo\u0026amp;length_seconds=18\u0026amp;baseUrl=http%3A%2F%2Fgoogleads.g.doubleclick.net%2Fpagead%2Fviewthroughconversion%2F962985656%2F\u0026amp;enablejsapi=1\u0026amp;iv_load_policy=1\u0026amp;tmi=1\u0026amp;sdetail=p%3A%2Fembed%2FjNQXAC9IVRw\u0026amp;url_encoded_fmt_stream_map=url%3Dhttp%253A%252F%252Fo-o---preferred---nuq04s11---v15---lscache2.c.youtube.com%252Fvideoplayback%253Fupn%253DcP8ntD99lv0%2526sparams%253Dcp%25252Cid%25252Cip%25252Cipbits%25252Citag%25252Cratebypass%25252Csource%25252Cupn%25252Cexpire%2526fexp%253D909520%25252C919102%25252C911639%25252C913602%25252C915507%25252C907217%25252C921602%25252C922401%25252C922600%25252C919804%25252C924500%25252C924700%25252C913547%25252C904721%25252C920706%25252C924402%25252C907344%25252C912706%25252C900816%25252C902518%25252C909414%2526ms%253Dau%2526itag%253D43%2526ipbits%253D8%2526signature%253DD8B293FE4D0803BEB98139415DE3DFA49F981CAD.C1F4C00DD25DD4FC4CD557602AFB35C278A79E49%2526mv%253Dm%2526sver%253D3%2526mt%253D1343577498%2526ratebypass%253Dyes%2526source%253Dyoutube%2526expire%253D1343597401%2526key%253Dyt1%2526ip%253D207.241.226.46%2526cp%253DU0hTSFVUVV9FS0NOM19NTllFOmczdHdHd0Etc2RK%2526id%253D8cd417002f48551c%26quality%3Dmedium%26fallback_host%3Dtc.v15.cache2.c.youtube.com%26type%3Dvideo%252Fwebm%253B%2Bcodecs%253D%2522vp8.0%252C%2Bvorbis%2522%26itag%3D43%2Curl%3Dhttp%253A%252F%252Fo-o---preferred---nuq04s11---v3---lscache8.c.youtube.com%252Fvideoplayback%253Fip%253D207.241.226.46%2526upn%253DcP8ntD99lv0%2526sparams%253Dalgorithm%25252Cburst%25252Ccp%25252Cfactor%25252Cid%25252Cip%25252Cipbits%25252Citag%25252Csource%25252Cupn%25252Cexpire%2526fexp%253D909520%25252C919102%25252C911639%25252C913602%25252C915507%25252C907217%25252C921602%25252C922401%25252C922600%25252C919804%25252C924500%25252C924700%25252C913547%25252C904721%25252C920706%25252C924402%25252C907344%25252C912706%25252C900816%25252C902518%25252C909414%2526mt%253D1343577498%2526ms%253Dau%2526algorithm%253Dthrottle-factor%2526burst%253D40%2526ipbits%253D8%2526itag%253D34%2526sver%253D3%2526signature%253D30A6F3C6B5027884D0B9279F74715BFAB304FFED.A25FD3084C27A9ED8BBA30CC616DE0CCC46D0CB9%2526mv%253Dm%2526source%253Dyoutube%2526expire%253D1343597401%2526key%253Dyt1%2526factor%253D1.25%2526cp%253DU0hTSFVUVV9FS0NOM19NTllFOmczdHdHd0Etc2RK%2526id%253D8cd417002f48551c%26quality%3Dmedium%26fallback_host%3Dtc.v3.cache8.c.youtube.com%26type%3Dvideo%252Fx-flv%26itag%3D34%2Curl%3Dhttp%253A%252F%252Fo-o---preferred---nuq04s11---v2---lscache8.c.youtube.com%252Fvideoplayback%253Fupn%253DcP8ntD99lv0%2526sparams%253Dcp%25252Cid%25252Cip%25252Cipbits%25252Citag%25252Cratebypass%25252Csource%25252Cupn%25252Cexpire%2526fexp%253D909520%25252C919102%25252C911639%25252C913602%25252C915507%25252C907217%25252C921602%25252C922401%25252C922600%25252C919804%25252C924500%25252C924700%25252C913547%25252C904721%25252C920706%25252C924402%25252C907344%25252C912706%25252C900816%25252C902518%25252C909414%2526ms%253Dau%2526itag%253D18%2526ipbits%253D8%2526signature%253D61E5C4786AAAF991050F8FF6BA702AFC509DEF22.235E0E2E900483CE39359D564D5A44AC0F715ADA%2526mv%253Dm%2526sver%253D3%2526mt%253D1343577498%2526ratebypass%253Dyes%2526source%253Dyoutube%2526expire%253D1343597401%2526key%253Dyt1%2526ip%253D207.241.226.46%2526cp%253DU0hTSFVUVV9FS0NOM19NTllFOmczdHdHd0Etc2RK%2526id%253D8cd417002f48551c%26quality%3Dmedium%26fallback_host%3Dtc.v2.cache8.c.youtube.com%26type%3Dvideo%252Fmp4%253B%2Bcodecs%253D%2522avc1.42001E%252C%2Bmp4a.40.2%2522%26itag%3D18%2Curl%3Dhttp%253A%252F%252Fo-o---preferred---nuq04s11---v22---lscache6.c.youtube.com%252Fvideoplayback%253Fip%253D207.241.226.46%2526upn%253DcP8ntD99lv0%2526sparams%253Dalgorithm%25252Cburst%25252Ccp%25252Cfactor%25252Cid%25252Cip%25252Cipbits%25252Citag%25252Csource%25252Cupn%25252Cexpire%2526fexp%253D909520%25252C919102%25252C911639%25252C913602%25252C915507%25252C907217%25252C921602%25252C922401%25252C922600%25252C919804%25252C924500%25252C924700%25252C913547%25252C904721%25252C920706%25252C924402%25252C907344%25252C912706%25252C900816%25252C902518%25252C909414%2526mt%253D1343577498%2526ms%253Dau%2526algorithm%253Dthrottle-factor%2526burst%253D40%2526ipbits%253D8%2526itag%253D5%2526sver%253D3%2526signature%253D871A7B81B267110AC06361C4AA55A5EBF600C749.729758BEB01EBB39C05E252E244608578A420970%2526mv%253Dm%2526source%253Dyoutube%2526expire%253D1343597401%2526key%253Dyt1%2526factor%253D1.25%2526cp%253DU0hTSFVUVV9FS0NOM19NTllFOmczdHdHd0Etc2RK%2526id%253D8cd417002f48551c%26quality%3Dsmall%26fallback_host%3Dtc.v22.cache6.c.youtube.com%26type%3Dvideo%252Fx-flv%26itag%3D5%2Curl%3Dhttp%253A%252F%252Fo-o---preferred---nuq04s11---v6---lscache7.c.youtube.com%252Fvideoplayback%253Fip%253D207.241.226.46%2526upn%253DcP8ntD99lv0%2526sparams%253Dalgorithm%25252Cburst%25252Ccp%25252Cfactor%25252Cid%25252Cip%25252Cipbits%25252Citag%25252Csource%25252Cupn%25252Cexpire%2526fexp%253D909520%25252C919102%25252C911639%25252C913602%25252C915507%25252C907217%25252C921602%25252C922401%25252C922600%25252C919804%25252C924500%25252C924700%25252C913547%25252C904721%25252C920706%25252C924402%25252C907344%25252C912706%25252C900816%25252C902518%25252C909414%2526mt%253D1343577498%2526ms%253Dau%2526algorithm%253Dthrottle-factor%2526burst%253D40%2526ipbits%253D8%2526itag%253D17%2526sver%253D3%2526signature%253DCB4189DBC4C213A02B35DE5FF1C11C5160D4F5D5.7C42FEC130B984EB607C648D79169F10F2F2AC38%2526mv%253Dm%2526source%253Dyoutube%2526expire%253D1343597401%2526key%253Dyt1%2526factor%253D1.25%2526cp%253DU0hTSFVUVV9FS0NOM19NTllFOmczdHdHd0Etc2RK%2526id%253D8cd417002f48551c%26quality%3Dsmall%26fallback_host%3Dtc.v6.cache7.c.youtube.com%26type%3Dvideo%252F3gpp%253B%2Bcodecs%253D%2522mp4v.20.3%252C%2Bmp4a.40.2%2522%26itag%3D17\u0026amp;watermark=%2Chttp%3A%2F%2Fs.ytimg.com%2Fyt%2Fimg%2Fwatermark%2Fyoutube_watermark-vflHX6b6E.png%2Chttp%3A%2F%2Fs.ytimg.com%2Fyt%2Fimg%2Fwatermark%2Fyoutube_hd_watermark-vflAzLcD6.png\u0026amp;sourceid=y\u0026amp;timestamp=1343577537\u0026amp;storyboard_spec=http%3A%2F%2Fi3.ytimg.com%2Fsb%2FjNQXAC9IVRw%2Fstoryboard3_L%24L%2F%24N.jpg%7C48%2327%23100%2310%2310%230%23default%23bdjKpnQoTkPNLWjTOxhNBp8Pp5I%7C60%2345%2320%2310%2310%231000%23M%24M%23KbvvlYAVTSdMbm3rry-JvPVWNrg%7C120%2390%2320%235%235%231000%23M%24M%23LKMVH_X5iq7255K1n1jGS91FjeQ\u0026amp;plid=AATF-gXUkv2HrLl2\u0026amp;cc_font=Arial+Unicode+MS%2C+arial%2C+verdana%2C+_sans\u0026amp;showpopout=1\u0026amp;hl=en_US\u0026amp;iv_module=http%3A%2F%2Fs.ytimg.com%2Fyt%2Fswfbin%2Fiv_module-vflO2GGMP.swf\u0026amp;iv_logging_level=4\u0026amp;st_module=http%3A%2F%2Fs.ytimg.com%2Fyt%2Fswfbin%2Fst_module-vflaqN4Bn.swf\u0026amp;no_get_video_log=1\u0026amp;cc_module=http%3A%2F%2Fs.ytimg.com%2Fyt%2Fswfbin%2Fsubtitle_module-vfl4PPPl4.swf\u0026amp;rvs=view_count%3D31%252C225%252C374%26feature_type%3Dfvwp%26author%3DWilliamRayWalters%26title%3DHow%2Bto%2Bsee%2Bthrough%2Bclothing%26length_seconds%3D133%26featured%3D1%26id%3DBzHCDknFbDU%2Cview_count%3D210%252C807%26author%3DMessageTVPakistan%26length_seconds%3D4885%26id%3DNDRurqoGN5Q%26title%3DHD%2B%2BMaulana%2BTariq%2BJameel%2BFirst%2Bever%2BLIVE%2Bbroadcast%2Bspeech%2B.%2BBy%2BMessageTV%2B9th%2BMay%2B2012%2BAIC%2Cview_count%3D14%252C679%252C052%26author%3Dnoeuro%26length_seconds%3D658%26id%3Db9DMiy_DVok%26title%3DTsunami%2B-%2BCaught%2BOn%2BCamera%2B-%2BP1%2Cview_count%3D116%252C709%26author%3D568brahma%26length_seconds%3D450%26id%3D_2j7jN0zG4Q%26title%3DGabbar%2Bsingh%2Bantakshari%2Bcomedy%2Bscene%2Cview_count%3D191%252C665%26author%3Ddrp199023%26length_seconds%3D658%26id%3DPZEs8XJwoFY%26title%3DNibiru%2BSeen%2BDuring%2BSolar%2BEclipse%2BAugust%2B1%2B2008%2Cview_count%3D200%252C401%26author%3Dlooneysolidsnake%26length_seconds%3D508%26id%3Dr50lWlHsgP8%26title%3DTop%2BThree%2BShortest%2BVideogames%2BEver%2Cview_count%3D54%252C238%26author%3DJustMKollum%26length_seconds%3D409%26id%3Drkfq0Ur5Anw%26title%3DMortal%2BKombat%2B3%2BFriendship%2BFails%2Cview_count%3D1%252C215%252C910%26author%3D1nterwebs%26length_seconds%3D307%26id%3DuImk2RgCq_U%26title%3DThe%2B20%2Boldest%2BVideos%2Bon%2BYoutube%2Cview_count%3D1%252C260%252C999%26author%3Dyorantenbrinke%26length_seconds%3D164%26id%3DGy1zDBW_UAw%26title%3DThe%2BWorld%2527s%2BOldest%2BBattlefield%2BPlayer%2Cview_count%3D90%252C216%26author%3DCriminalmindschickp2%26length_seconds%3D2487%26id%3DbxycbIIEe9s%26title%3DCriminal%2BMinds%2B-%2B7x13%2BSnake%2BEyes%2B%2528Full%2BEpisode%2529%2Cview_count%3D1%252C217%252C510%26author%3D73inches%26length_seconds%3D11%26id%3DrgfFoZ8tq5w%26title%3DMark%2BZuckerberg%2527s%2B10%2Bevil%2Bseconds%2Cview_count%3D2%252C181%252C265%26author%3DPlasmaSpeedo%26length_seconds%3D563%26id%3D9c8YTe0xSV0%26title%3DMe%2Btrying%2BKonad%2Bfor%2Bthe%2Bfirst%2Btime.%2B.%2B.\u0026amp;endscreen_module=http%3A%2F%2Fs.ytimg.com%2Fyt%2Fswfbin%2Fendscreen-vfldNcUuS.swf\u0026amp;iv_read_url=http%3A%2F%2Fwww.youtube.com%2Fannotations_iv%2Fread2%3Fvideo_id%3DjNQXAC9IVRw%26feat%3DCS\u0026amp;iv_queue_log_level=0\u0026amp;referrer=http%3A%2F%2Fwww.youtube.com%2Fembed%2FjNQXAC9IVRw%3Fwmode%3Dopaque\u0026amp;video_id=jNQXAC9IVRw\u0026amp;sw=0.1\u0026amp;sk=LluKktezeMn5OiTO9VRxqCeDWlvbhBPXC\u0026amp;pltype=content\u0026amp;t=vjVQa1PpcFNldiE1U4urmkznRBwLsyc-9LrkPNIdsXE%3D\u0026amp;vq=auto\"     allowscriptaccess=\"always\" allowfullscreen=\"true\" bgcolor=\"#000000\"\u003e\n  \u003cnoembed\u003e\u003cdiv class=\"yt-alert yt-alert-default yt-alert-error  yt-alert-player\"\u003e\u003cdiv class=\"yt-alert-icon\"\u003e\u003cimg s\u0072c=\"\/\/s.ytimg.com\/yt\/img\/pixel-vfl3z5WfW.gif\" class=\"icon master-sprite\" alt=\"Alert icon\"\u003e\u003c\/div\u003e\u003cdiv class=\"yt-alert-buttons\"\u003e\u003c\/div\u003e\u003cdiv class=\"yt-alert-content\" role=\"alert\"\u003e    \u003cspan class=\"yt-alert-vertical-trick\"\u003e\u003c\/span\u003e\n    \u003cdiv class=\"yt-alert-message\"\u003e\n            You need Adobe Flash Player to watch this video. \u003cbr\u003e \u003ca href=\"http:\/\/get.adobe.com\/flashplayer\/\"\u003eDownload it from Adobe.\u003c\/a\u003e\n    \u003c\/div\u003e\n\u003c\/div\u003e\u003c\/div\u003e\u003c\/noembed\u003e\n\n";
@@ -850,15 +853,15 @@ document.getElementById('watch-player').innerHTML = swf;
 											<div id="watch-actions-transcript" class="watch-actions-panel hid">
 												<div
 													id="caption-line-template" class="hid"><!--
-														    <div class="caption-line-time">
-														      <div class="caption-line-start">__start__</div>
-														    </div>
-														    <div class="editable-line-text">
-														      <span class="editable-line-text-original">__original__</span>
-														      <label class="editable-line-text-current hid">__current__</label>
-														      <textarea class="editable-line-text-input hid">__input__</textarea>
-														    </div>
-														    -->
+																																										    <div class="caption-line-time">
+																																										      <div class="caption-line-start">__start__</div>
+																																										    </div>
+																																										    <div class="editable-line-text">
+																																										      <span class="editable-line-text-original">__original__</span>
+																																										      <label class="editable-line-text-current hid">__current__</label>
+																																										      <textarea class="editable-line-text-input hid">__input__</textarea>
+																																										    </div>
+																																										    -->
 												</div>
 
 
