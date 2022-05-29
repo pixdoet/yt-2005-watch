@@ -83,10 +83,6 @@ function requestVideoSrc($videoId)
     # check if there's a video src or something or something or SOMETHING
     if (isset($mainResponseObject->streamingData->formats[1]->url)) {
         $videoLink = $mainResponseObject->streamingData->formats[1]->url;
-        $videoHtml = sprintf('<video controls class="video-player googlevideo-player" style="width: 427px; height: margin:center;" src="%s"></video>', $videoLink);
-        return $videoHtml;
-    } else {
-        $videoHtml = sprintf('<span class="noVideoError">Video unavailable for playback. <a href="https://youtube.com/watch?v=%s">Watch on YouTube</a></span>', $videoId);
-        return $videoHtml;
+        return $videoLink;
     }
 }
