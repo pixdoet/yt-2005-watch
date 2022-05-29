@@ -13,7 +13,7 @@ $twig = new Environment($loader);
 include("includes/youtubei/player.php");
 
 if (!isset($_GET['v'])) {
-    $twig->render(
+    echo $twig->render(
         "novideo.html.twig",
         [
             "id" => "#",
@@ -28,7 +28,7 @@ if (!isset($_GET['v'])) {
 
     // check if video exists
     if (!isset($mainResponseObject->videoDetails->title)) {
-        $twig->render(
+        echo $twig->render(
             "novideo.html.twig",
             [
                 "id" => $id,
@@ -68,7 +68,12 @@ if (!isset($_GET['v'])) {
         }
 
         // video source file
-        $videoHtml = requestVideoSrc($id);
+        if (requestVideoSrc($id)) {
+            $videoLink = requestVideoSrc($id);
+            $videoHtml = sprintf('<video controls class="video-player googlevideo-player" style="width: 427px; height: margin:center;" src="%s"></video>', $videoLink);
+        } else {
+            $videoHtml = sprintf('<span class="noVideoError">Video unavailable for playback. <a href="https://youtube.com/watch?v=%s">Watch on YouTube</a></span>', $id);
+        }
 
         // start writing to twiG
 
