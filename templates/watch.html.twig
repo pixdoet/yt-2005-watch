@@ -111,11 +111,26 @@
 
 						</form>
 						<br>
-
-						<div class="commentsTitle">Comments (1):</div>
-
-						<div class="commentsEntry">Comments not yet implemented...<br>
-							- (100000 Centuries ago)</div>
+						<div dummy="true">
+							<div class="commentsTitle">Comments:</div>
+							{% if hasComments %}
+								{% for comment in videoComments %}
+									<div class="commentsEntry">{{ comment.commentThreadRenderer.comment.commentRenderer.contentText.runs[0].text }}<br>
+										-
+										<a href="profile.php?id={{ comment.commentThreadRenderer.comment.commentRenderer.authorEndpoint.browseEndpoint.browseId }}">{{ comment.commentThreadRenderer.comment.commentRenderer.authorText.simpleText }}</a>
+										//
+										<a href="profile.php?id={{ comment.commentThreadRenderer.comment.commentRenderer.authorEndpoint.browseEndpoint.browseId }}">Videos</a>
+										|
+										<a href="profile.php?id={{ comment.commentThreadRenderer.comment.commentRenderer.authorEndpoint.browseEndpoint.browseId }}">Favourites</a>
+										|
+										<a href="profile.php?id={{ comment.commentThreadRenderer.comment.commentRenderer.authorEndpoint.browseEndpoint.browseId }}">Friends</a>
+										({{ comment.commentThreadRenderer.comment.commentRenderer.publishedTimeText.runs[0].text }})
+									</div>
+								{% endfor %}
+							{% else %}
+								<div class="commentsEntry">No comments or comments disabled.</div>
+							{% endif %}
+						</div>
 					</td>
 					<td width="280">
 						<table width="280" cellspacing="0" cellpadding="0" border="0" bgcolor="#CCCCCC" align="center">
@@ -145,10 +160,8 @@
 												</tbody>
 											</table>
 										</div>
-
 										<div id="side_results" name="side_results">
 											<div class="moduleFrameEntrySelected">
-
 												<table width="235" cellspacing="0" cellpadding="0" border="0">
 													<tbody>
 														<tr valign="top">
@@ -192,16 +205,12 @@
 						</table>
 						<div style="font-weight: bold; color: #333; margin: 10px 0px 5px 0px;">Related tags:</div>
 						{% for tag in tags %}
-							<div style="padding: 0px 0px 5px 0px; color: #999;">»
-								<a href="results.php?search={{ tag }}" target="_blank">{{ tag }}</a>
+							<div style="padding: 0px 0px 5px 0px; color: #999;">»<a href="results.php?search={{ tag }}" target="_blank">{{ tag }}</a>
 							</div>
 						{% endfor %}
 					</td>
 				</tr>
-
-
 			</tbody>
 		</table>
-
 	</div>
 </td></tr></tbody></table>{% endblock %}

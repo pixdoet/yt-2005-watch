@@ -1,10 +1,18 @@
 <?php
+// init twig services
+require __DIR__ . '/vendor/autoload.php';
+
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+
+$loader = new FilesystemLoader(__DIR__ . '/templates');
+$twig = new Environment($loader);
 
 include("includes/youtubei/search.php");
 include("includes/config.inc.php");
 
 if (!isset($_GET['search'])) {
-    include("includes/html/noquery.php");
+    echo $twig->render("noquery.html.twig");
 } else {
     $query = $_GET['search'];
     $mainResponseObject = json_decode(requestSearch($query));
