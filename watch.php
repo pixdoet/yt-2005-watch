@@ -100,7 +100,7 @@ if (!isset($_GET['v'])) {
             $hasComments = false;
         }
 
-        if (isset($_GET['2012']) && $_GET['2012'] == "true") {
+        if (isset($_GET['2012']) && $_GET['2012'] == "1") {
             echo $twig->render(
                 "watch2012.html.twig",
                 [
