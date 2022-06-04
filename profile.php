@@ -20,11 +20,15 @@ if (!isset($_GET['id'])) {
         $metadata = $mainResponseObject->contents->twoColumnBrowseResultsRenderer->tabs[4]->tabRenderer->content->sectionListRenderer->contents[0]->itemSectionRenderer->contents[0]->channelAboutFullMetadataRenderer;
         $cDetails = array(
             "name" => $metadata->title->simpleText,
-            "description" => $metadata->description->simpleText,
+            "description" => "N/A",
             "thumbnail" => $metadata->avatar->thumbnails[0]->url,
             "joined" => $metadata->joinedDateText->runs[1]->text, // currently not implemented, will find some way to add in this shit
             "rss" => "https://www.youtube.com/feeds/videos.xml?channel_id=" . $id,
         );
+
+        if (isset($metadata->description->simpleText)) {
+            $cDetails["description"] = $metadata->description->simpleText;
+        }
     } else {
         $metadata = $mainResponseObject->metadata->channelMetadataRenderer;
         $cDetails = array(
