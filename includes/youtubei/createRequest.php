@@ -1,4 +1,12 @@
 <?php
+// DEPRECATION NOTICE: DO NOT USE THIS FILE.
+// PLEASE SPLIT DIFFERENT ENDPOINT REQUESTS INTO
+// THEIR OWN FILES SPECIFICALLY
+
+// FILE ARCHIVED FOR HISTORICAL PURPOSES
+
+// ---------------------------------------------------------------------- //
+
 // functions for creating various data needed to request youtubei :hiM:
 
 // read functions

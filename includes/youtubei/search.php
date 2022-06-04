@@ -32,7 +32,6 @@ function requestSearch($query)
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_COOKIEFILE, "../../cookies.txt");
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        "Authorization: ",
         "Content-Type: application/json",
         "X-Goog-AuthUser: 0",
         "X-Origin: https://www.youtube.com"

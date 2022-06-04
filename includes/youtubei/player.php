@@ -66,12 +66,9 @@ function requestVideoSrc($videoId)
     $ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:100.0) Gecko/20100101 Firefox/100.0";
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // so that the 1 doesnt show
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        "Authorization: ", //sapisidhash,
         "Content-Type: application/json",
         "X-Goog-AuthUser: 0",
         "X-Origin: https://www.youtube.com",
-        "X-YouTube-Client-Name: ANDROID",
-        "X-YouTube-Client-Version: 15.12.11",
     ));
     curl_setopt($ch, CURLOPT_POSTFIELDS, $req_arr);
     curl_setopt($ch, CURLOPT_USERAGENT, $ua);
