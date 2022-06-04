@@ -11,6 +11,7 @@ $loader = new FilesystemLoader(__DIR__ . '/templates');
 $twig = new Environment($loader);
 
 include("includes/youtubei/player.php");
+include("includes/youtubei/comments.php");
 
 if (!isset($_GET['v'])) {
     echo $twig->render(
@@ -75,7 +76,29 @@ if (!isset($_GET['v'])) {
             $videoHtml = sprintf('<span class="noVideoError">Video unavailable for playback. <a href="https://youtube.com/watch?v=%s">Watch on YouTube</a></span>', $id);
         }
 
-        // start writing to twiG
+        // fetch comments into an array...
+        $initialResponseContext = json_decode(fetchInitialNext($id));
+        if (isset($initialResponseContext->contents->twoColumnWatchNextResults->results->results->contents[3])) {
+            $hasComments = true;
+            $continuation = $initialResponseContext
+                ->contents
+                ->twoColumnWatchNextResults
+                ->results
+                ->results
+                ->contents[3]
+                ->itemSectionRenderer
+                ->contents[0]
+                ->continuationItemRenderer
+                ->continuationEndpoint
+                ->continuationCommand
+                ->token;
+            // fetch the comments
+            $mainResponseContext = json_decode(fetchComment($id, $continuation));
+            $commentsArray = $mainResponseContext->onResponseReceivedEndpoints[1]->reloadContinuationItemsCommand->continuationItems;
+            // start writing to twiG
+        } else {
+            $hasComments = false;
+        }
 
         if (isset($_GET['2012']) && $_GET['2012'] == "true") {
             echo $twig->render(
@@ -96,22 +119,27 @@ if (!isset($_GET['v'])) {
                 ]
             );
         } else {
+            $dataArray = [
+                "videoId" => $id,
+                "videoHtml" => $videoHtml,
+                "videoTags" => $tags,
+                "videoDescription" => $videoDetails['videoDescription'],
+                "videoTitle" => $videoDetails['videoTitle'],
+                "videoViews" => $videoDetails['videoViews'],
+                "videoAuthor" => $videoDetails['videoAuthor'],
+                "videoUploadDate" => $videoDetails['videoUploadDate'],
+                "videoRuntime" => $videoDetails['videoRuntime'],
+                "videoThumbnail" => $videoDetails['videoThumbnail'],
+                "authorChannelId" => $videoDetails['authorChannelId'],
+                "videoConvertedRuntime" => $videoDetails['videoConvertedRuntime'],
+                "hasComments" => $hasComments,
+            ];
+            if ($hasComments) {
+                $dataArray['videoComments'] = $commentsArray;
+            }
             echo $twig->render(
                 "watch.html.twig",
-                [
-                    "videoId" => $id,
-                    "videoHtml" => $videoHtml,
-                    "videoTags" => $tags,
-                    "videoDescription" => $videoDetails['videoDescription'],
-                    "videoTitle" => $videoDetails['videoTitle'],
-                    "videoViews" => $videoDetails['videoViews'],
-                    "videoAuthor" => $videoDetails['videoAuthor'],
-                    "videoUploadDate" => $videoDetails['videoUploadDate'],
-                    "videoRuntime" => $videoDetails['videoRuntime'],
-                    "videoThumbnail" => $videoDetails['videoThumbnail'],
-                    "authorChannelId" => $videoDetails['authorChannelId'],
-                    "videoConvertedRuntime" => $videoDetails['videoConvertedRuntime'],
-                ]
+                $dataArray
             );
         }
     }

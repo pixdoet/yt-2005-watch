@@ -1,14 +1,11 @@
 <?php
 
 /**
- * Simple comment fetcher for YouTubei /next
+ * Request /next for the comment continuation
  * 
  * @author Ian Hiew (pixdo.et@gmail.com)
  */
-
-include("initial.php");
-
-function fetchComment($videoId, $continuation)
+function fetchInitialNext($videoId)
 {
     $req_arr = json_encode(array(
         'context' =>
@@ -25,7 +22,8 @@ function fetchComment($videoId, $continuation)
                 ),
             ),
         ),
-        'continuation' => $continuation,
+        'videoId' => $videoId,
+        'captionsRequested' => true,
     ));
     $ch = curl_init();
     $ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:100.0) Gecko/20100101 Firefox/100.0";
@@ -44,35 +42,3 @@ function fetchComment($videoId, $continuation)
     $result = curl_exec($ch);
     return $result;
 }
-
-
-/*if (isset($_GET['v'])) {
-    $videoId = $_GET['v'];
-    // fetch the comment continuation
-    $initialResponseContext = json_decode(fetchInitialNext($videoId));
-    $continuation = $initialResponseContext
-        ->contents
-        ->twoColumnWatchNextResults
-        ->results
-        ->results
-        ->contents[3]
-        ->itemSectionRenderer
-        ->contents[0]
-        ->continuationItemRenderer
-        ->continuationEndpoint
-        ->continuationCommand
-        ->token;
-    // echo (json_encode(array("continuation" => $continuation)));
-    // fetch the comments
-    header("Content-Type: application/json");
-    $mainResponseContext = json_decode(fetchComment($videoId, $continuation));
-    echo json_encode($mainResponseContext);
-} else {
-
-    $err = array(
-        "error" => "No video ID provided. Add one by adding ?v=<video_id> to the URL.",
-        "status" => 1
-    );
-    echo (json_encode($err));
-}
-*/

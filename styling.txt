@@ -1,0 +1,16 @@
+No specific code guidelines, except for this:
+    When handling long YouTubei strings, use objects with the following format(excerpt from /includes/youtubei/comments.php):
+        $continuation = $mainResponseContext
+        ->contents
+        ->twoColumnWatchNextResults
+        ->results
+        ->results
+        ->contents[3]
+        ->itemSectionRenderer
+        ->contents[0]
+        ->continuationItemRenderer
+        ->continuationEndpoint
+        ->continuationCommand
+        ->token;
+    Where the arrow is at the beginning on the new line.
+

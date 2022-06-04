@@ -13,3 +13,6 @@ responses/*
 dynamicpages/*
 
 *secret.php
+
+# tests for upcoming features
+tests/*
