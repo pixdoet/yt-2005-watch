@@ -535,3 +535,7 @@ a.title:hover {
 .redtext {
     color: #f00;
 }
+.googlevideo-player {
+    display: flex;
+    max-height:100%;
+}
