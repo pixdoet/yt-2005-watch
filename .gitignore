@@ -16,3 +16,6 @@ dynamicpages/*
 
 # tests for upcoming features
 tests/*
+
+# rehike redirect for rehike.hiew.me
+rehike/*
