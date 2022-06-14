@@ -192,6 +192,35 @@
 													</tbody>
 												</table>
 											</div>
+											{% for related in videoRelated %}
+												<div class="moduleFrameEntrySelected">
+													<table width="235" cellspacing="0" cellpadding="0" border="0">
+														<tbody>
+															<tr valign="top">
+																<td width="90">
+																	<a href="watch.php?v={{ related.compactVideoRenderer.videoId }}" class="bold" target="_parent"><img src="https://i.ytimg.com/vi/{{ related.compactVideoRenderer.videoId }}/hqdefault.jpg" class="moduleEntryThumb" width="80" height="60"></a>
+																</td>
+																<td>
+																	<div class="moduleFrameTitle">
+																		<a href="watch.php?v={{ related.compactVideoRenderer.videoId }}" target="_parent">{{ related.compactVideoRenderer.title.simpleText }}</a>
+																	</div>
+																	<div class="moduleFrameDetails">
+																		by
+																		<a href="profile.php?id={{ related.compactVideoRenderer.shortBylineText.runs[0].browseEndpoint.browseId }}" target="_parent">{{ related.compactVideoRenderer.shortBylineText.runs[0].text }}</a>
+																	</div>
+																	<div class="moduleFrameDetails">
+																		Runtime:
+																		{{ related.compactVideoRenderer.lengthText.simpleText }}<br>
+																		Views:
+																		{{ related.compactVideoRenderer.viewCountText.simpleText }}<br>
+																		Comments: 1
+																	</div>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											{% endfor %}
 										</td>
 									</td>
 									<td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>

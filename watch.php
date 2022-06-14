@@ -100,6 +100,20 @@ if (!isset($_GET['v'])) {
             $hasComments = false;
         }
 
+        // get related videos...
+        $relatedResponse = json_decode(fetchInitialNext($id));
+        if (isset($relatedResponse->contents->twoColumnWatchNextResults->secondaryResults->secondaryResults->results)) {
+            $hasRelated = true;
+            // print_r($relatedResponse->contents->twoColumnWatchNextResults->secondaryResults->secondaryResults->results);
+            $relatedArray = $relatedResponse
+                ->contents
+                ->twoColumnWatchNextResults
+                ->secondaryResults
+                ->secondaryResults
+                ->results;
+        } else {
+            $hasRelated = false;
+        }
         if (isset($_GET['2012']) && $_GET['2012'] == "1") {
             echo $twig->render(
                 "watch2012.html.twig",
@@ -133,9 +147,13 @@ if (!isset($_GET['v'])) {
                 "authorChannelId" => $videoDetails['authorChannelId'],
                 "videoConvertedRuntime" => $videoDetails['videoConvertedRuntime'],
                 "hasComments" => $hasComments,
+                "hasRelated" => $hasRelated,
             ];
             if ($hasComments) {
                 $dataArray['videoComments'] = $commentsArray;
+            }
+            if ($hasRelated) {
+                $dataArray['videoRelated'] = $relatedArray;
             }
             echo $twig->render(
                 "watch.html.twig",
