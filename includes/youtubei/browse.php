@@ -1,9 +1,10 @@
 <?php
-/*
+
+/** 
  * Browse.php - requests channel and homepages, among others
  * 
  * @author Ian Hiew (pixdo.et@gmail.com)
-*/
+ */
 
 function requestBrowse($brid)
 {
