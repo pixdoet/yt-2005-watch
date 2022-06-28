@@ -1,6 +1,7 @@
 <?php
 
 
+include("initial.php");
 function fetchComment($videoId, $continuation)
 {
     /**
@@ -12,8 +13,7 @@ function fetchComment($videoId, $continuation)
      * @param string $continuation - the continuation from the initial `next` request
      */
 
-    include("includes/config.inc.php");
-    include("initial.php");
+    include_once("includes/config.inc.php");
 
     $req_arr = json_encode(array(
         'context' =>
@@ -21,9 +21,9 @@ function fetchComment($videoId, $continuation)
             'client' =>
             array(
                 'hl' => 'en',
-                'userAgent' => $INNERTUBE_REQUEST_USER_AGENT,
+                'userAgent' => INNERTUBE_REQUEST_USER_AGENT,
                 'clientName' => 'WEB',
-                'clientVersion' => $INNERTUBE_CONTEXT_CLIENT_VERSION,
+                'clientVersion' => INNERTUBE_CONTEXT_CLIENT_VERSION,
                 'mainAppWebInfo' =>
                 array(
                     'graftUrl' => '/watch?v=' . $videoId,
@@ -41,9 +41,9 @@ function fetchComment($videoId, $continuation)
         "X-Origin: https://www.youtube.com",
     ));
     curl_setopt($ch, CURLOPT_POSTFIELDS, $req_arr);
-    curl_setopt($ch, CURLOPT_USERAGENT, $INNERTUBE_REQUEST_USER_AGENT);
+    curl_setopt($ch, CURLOPT_USERAGENT, INNERTUBE_REQUEST_USER_AGENT);
     curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_URL, "https://www.youtube.com/youtubei/v1/next?key=" . $INNERTUBE_REQUEST_API_KEY);
+    curl_setopt($ch, CURLOPT_URL, "https://www.youtube.com/youtubei/v1/next?key=" . INNERTUBE_REQUEST_API_KEY);
 
     $result = curl_exec($ch);
     return $result;

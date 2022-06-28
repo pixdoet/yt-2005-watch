@@ -10,7 +10,7 @@ function requestSearch($query)
      */
 
     // endpoint: /youtube1/v1/search
-    include("includes/config.inc.php");
+    include_once("includes/config.inc.php");
     $req_arr = json_encode(array(
         'context' =>
         array(
@@ -18,7 +18,7 @@ function requestSearch($query)
             array(
                 'visitorData' => 'Cgtjc1hsUzJrS2tlWSj0752NBg%3D%3D',
                 'clientName' => 'WEB',
-                'clientVersion' => $INNERTUBE_CONTEXT_CLIENT_VERSION,
+                'clientVersion' => INNERTUBE_CONTEXT_CLIENT_VERSION,
                 'originalUrl' => 'https://www.youtube.com/results?search_query=' . $query,
                 'mainAppWebInfo' =>
                 array(
@@ -37,9 +37,9 @@ function requestSearch($query)
         "X-Origin: https://www.youtube.com"
     ));
     curl_setopt($ch, CURLOPT_POSTFIELDS, $req_arr);
-    curl_setopt($ch, CURLOPT_USERAGENT, $INNERTUBE_REQUEST_USER_AGENT);
+    curl_setopt($ch, CURLOPT_USERAGENT, INNERTUBE_REQUEST_USER_AGENT);
     curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_URL, "https://www.youtube.com/youtubei/v1/search?key=" . $INNERTUBE_REQUEST_API_KEY);
+    curl_setopt($ch, CURLOPT_URL, "https://www.youtube.com/youtubei/v1/search?key=" . INNERTUBE_REQUEST_API_KEY);
 
     $result = curl_exec($ch);
     return $result;

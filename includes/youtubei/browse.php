@@ -15,7 +15,7 @@ function requestBrowse($brid)
      * 
      * @param string $brid - requests with a "Browse ID"
      */
-    include("includes/config.inc.php");
+    include_once("includes/config.inc.php");
     $req_arr = json_encode(
         array(
             'context' =>
@@ -23,9 +23,9 @@ function requestBrowse($brid)
                 'client' =>
                 array(
                     'visitorData' => 'Cgtjc1hsUzJrS2tlWSiBnYaNBg%3D%3D',
-                    'userAgent' => $INNERTUBE_REQUEST_USER_AGENT,
+                    'userAgent' => INNERTUBE_REQUEST_USER_AGENT,
                     'clientName' => 'WEB',
-                    'clientVersion' => $INNERTUBE_CONTEXT_CLIENT_VERSION,
+                    'clientVersion' => INNERTUBE_CONTEXT_CLIENT_VERSION,
                     'mainAppWebInfo' =>
                     array(
                         'graftUrl' => '/feed/subscriptions',
@@ -44,9 +44,9 @@ function requestBrowse($brid)
         "X-Origin: https://www.youtube.com"
     ));
     curl_setopt($ch, CURLOPT_POSTFIELDS, $req_arr);
-    curl_setopt($ch, CURLOPT_USERAGENT, $INNERTUBE_REQUEST_USER_AGENT);
+    curl_setopt($ch, CURLOPT_USERAGENT, INNERTUBE_REQUEST_USER_AGENT);
     curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_URL, "https://www.youtube.com/youtubei/v1/browse?key=") . $INNERTUBE_REQUEST_API_KEY;
+    curl_setopt($ch, CURLOPT_URL, "https://www.youtube.com/youtubei/v1/browse?key=") . INNERTUBE_REQUEST_API_KEY;
 
     $result = curl_exec($ch);
     return $result;
@@ -80,7 +80,7 @@ function requestChannel($channelId, $type)
         }
     }
     // more advanced functions for browse
-    include("includes/config.inc.php");
+    include_once("includes/config.inc.php");
     $req_arr = json_encode(
         array(
             'context' =>
@@ -88,9 +88,9 @@ function requestChannel($channelId, $type)
                 'client' =>
                 array(
                     'visitorData' => 'Cgtjc1hsUzJrS2tlWSiBnYaNBg%3D%3D',
-                    'userAgent' => $INNERTUBE_REQUEST_USER_AGENT,
+                    'userAgent' => INNERTUBE_REQUEST_USER_AGENT,
                     'clientName' => 'WEB',
-                    'clientVersion' => $INNERTUBE_CONTEXT_CLIENT_VERSION,
+                    'clientVersion' => INNERTUBE_CONTEXT_CLIENT_VERSION,
                     'mainAppWebInfo' =>
                     array(
                         'graftUrl' => '/feed/subscriptions',
@@ -111,9 +111,9 @@ function requestChannel($channelId, $type)
         "X-Origin: https://www.youtube.com"
     ));
     curl_setopt($ch, CURLOPT_POSTFIELDS, $req_arr);
-    curl_setopt($ch, CURLOPT_USERAGENT, $INNERTUBE_REQUEST_USER_AGENT);
+    curl_setopt($ch, CURLOPT_USERAGENT, INNERTUBE_REQUEST_USER_AGENT);
     curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_URL, "https://www.youtube.com/youtubei/v1/browse?key=" . $INNERTUBE_REQUEST_API_KEY);
+    curl_setopt($ch, CURLOPT_URL, "https://www.youtube.com/youtubei/v1/browse?key=" . INNERTUBE_REQUEST_API_KEY);
 
     $result = curl_exec($ch);
     return $result;

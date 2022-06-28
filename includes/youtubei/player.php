@@ -8,7 +8,7 @@ function requestPlayer($videoId)
      * @author Ian Hiew(pixdo.et@gmail.com)
      * @param string $videoId - the video id to fetch `player` for
      */
-    include("includes/config.inc.php");
+    include_once("includes/config.inc.php");
     $req_arr = json_encode(
         array(
             'context' =>
@@ -17,7 +17,7 @@ function requestPlayer($videoId)
                 array(
                     'hl' => 'en',
                     'clientName' => 'WEB',
-                    'clientVersion' => $INNERTUBE_CONTEXT_CLIENT_VERSION,
+                    'clientVersion' => INNERTUBE_CONTEXT_CLIENT_VERSION,
                     'mainAppWebInfo' =>
                     array(
                         'graftUrl' => '/watch?v=' . $videoId,
@@ -38,9 +38,9 @@ function requestPlayer($videoId)
         "X-Origin: https://www.youtube.com",
     ));
     curl_setopt($ch, CURLOPT_POSTFIELDS, $req_arr);
-    curl_setopt($ch, CURLOPT_USERAGENT, $INNERTUBE_REQUEST_USER_AGENT);
+    curl_setopt($ch, CURLOPT_USERAGENT, INNERTUBE_REQUEST_USER_AGENT);
     curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_URL, "https://www.youtube.com/youtubei/v1/player?key=" . $INNERTUBE_REQUEST_API_KEY);
+    curl_setopt($ch, CURLOPT_URL, "https://www.youtube.com/youtubei/v1/player?key=" . INNERTUBE_REQUEST_API_KEY);
 
     $result = curl_exec($ch);
     return $result;
@@ -54,7 +54,7 @@ function requestVideoSrc($videoId)
      * 
      * @param string $videoId - the video id to fetch for
      */
-    include("includes/config.inc.php");
+    include_once("includes/config.inc.php");
     $req_arr = json_encode(
         array(
             'context' =>
@@ -63,7 +63,7 @@ function requestVideoSrc($videoId)
                 array(
                     'hl' => 'en',
                     'clientName' => 'ANDROID',
-                    'clientVersion' => $ANDROIDTUBE_REQUEST_CLIENT_VERSION,
+                    'clientVersion' => ANDROIDTUBE_REQUEST_CLIENT_VERSION,
                     'mainAppWebInfo' =>
                     array(
                         'graftUrl' => '/watch?v=' . $videoId,
@@ -74,7 +74,6 @@ function requestVideoSrc($videoId)
         )
     );
     $ch = curl_init();
-    $ua = $INNERTUBE_REQUEST_USER_AGENT;
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         "Content-Type: application/json",
@@ -82,9 +81,9 @@ function requestVideoSrc($videoId)
         "X-Origin: https://www.youtube.com",
     ));
     curl_setopt($ch, CURLOPT_POSTFIELDS, $req_arr);
-    curl_setopt($ch, CURLOPT_USERAGENT, $ua);
+    curl_setopt($ch, CURLOPT_USERAGENT, INNERTUBE_REQUEST_USER_AGENT);
     curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_URL, "https://www.youtube.com/youtubei/v1/player?key=" . $INNERTUBE_REQUEST_API_KEY);
+    curl_setopt($ch, CURLOPT_URL, "https://www.youtube.com/youtubei/v1/player?key=" . INNERTUBE_REQUEST_API_KEY);
 
     $result = curl_exec($ch);
     $mainResponseObject = json_decode($result);
