@@ -104,7 +104,6 @@ if (!isset($_GET['v'])) {
         $relatedResponse = json_decode(fetchInitialNext($id));
         if (isset($relatedResponse->contents->twoColumnWatchNextResults->secondaryResults->secondaryResults->results)) {
             $hasRelated = true;
-            // print_r($relatedResponse->contents->twoColumnWatchNextResults->secondaryResults->secondaryResults->results);
             $relatedArray = $relatedResponse
                 ->contents
                 ->twoColumnWatchNextResults
@@ -154,6 +153,7 @@ if (!isset($_GET['v'])) {
             }
             if ($hasRelated) {
                 $dataArray['videoRelated'] = $relatedArray;
+                $dataArray['videoRelatedCount'] = sizeof($relatedArray);
             }
             echo $twig->render(
                 "watch.html.twig",
