@@ -7,6 +7,11 @@
  */
 function fetchInitialNext($videoId)
 {
+    /**
+     * fetchInitialNext - function that requests InnerTube `next` to get continuations needed for other functions
+     * 
+     * @param string $videoId - the video id to fetch `next` for
+     */
     $req_arr = json_encode(array(
         'context' =>
         array(
