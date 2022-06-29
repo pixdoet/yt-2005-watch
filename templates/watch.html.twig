@@ -88,21 +88,26 @@ this.video.muted = !this.video.muted;
 						</div>
 
 						<div style="text-align: center; padding-bottom: 10px;">
-							<figure class="video-player" id="flashcontent" class="videoPlayerHolder">
-								<div id="googlevideo-e">
-									<video id="googlevideo-holder" preload="none" poster="//i.ytimg.com/vi/{{ videoId }}/hqdefault.jpg" src="{{ videoHtml }}"></video>
-									<div class="controller">
-										<button class="play-toggle"></button>
-										<button class="bar"></button>
-										<button class="mute-toggle"></button>
-									</div>
+							{% if useNativePlayer %}
+								<div id="flashcontent" class="videoPlayerHolder">
+									{{ videoHtml | striptags("<video><span><a>") | raw}}
 								</div>
-							</figure>
-							<script>
-								// Initialize video player
+							{% else %}
+								<figure class="video-player" id="flashcontent" class="videoPlayerHolder">
+									<div id="googlevideo-e">
+										<video id="googlevideo-holder" preload="none" poster="//i.ytimg.com/vi/{{ videoId }}/hqdefault.jpg" src="{{ videoSrc }}"></video>
+										<div class="controller">
+											<button class="play-toggle"></button>
+											<button class="bar"></button>
+											<button class="mute-toggle"></button>
+										</div>
+									</div>
+								</figure>
+								<script>
+									// Initialize video player
 new VideoPlayer({element: document.querySelector('.video-player')});
-							</script>
-
+								</script>
+							{% endif %}
 						</div>
 
 						<table width="425" cellspacing="0" cellpadding="0" border="0" align="center">

@@ -113,12 +113,23 @@ if (!isset($_GET['v'])) {
         } else {
             $hasRelated = false;
         }
+        // add check for native player GET param
+        if (isset($_GET['useNative'])) {
+            if ($_GET['useNative']) {
+                $useNativePlayer = true;
+            } else {
+                $useNativePlayer = false;
+            }
+        } else {
+            $useNativePlayer = false;
+        }
         if (isset($_GET['2012']) && $_GET['2012'] == "1") {
             echo $twig->render(
                 "watch2012.html.twig",
                 [
                     "videoId" => $id,
-                    "videoHtml" => $videoLink,
+                    "videoHtml" => $videoHtml,
+                    "videoSrc" => $videoLink,
                     "videoTags" => $tags,
                     "videoDescription" => $videoDetails['videoDescription'],
                     "videoTitle" => $videoDetails['videoTitle'],
@@ -134,7 +145,8 @@ if (!isset($_GET['v'])) {
         } else {
             $dataArray = [
                 "videoId" => $id,
-                "videoHtml" => $videoLink,
+                "videoHtml" => $videoHtml,
+                "videoSrc" => $videoLink,
                 "videoTags" => $tags,
                 "videoDescription" => $videoDetails['videoDescription'],
                 "videoTitle" => $videoDetails['videoTitle'],
@@ -147,6 +159,7 @@ if (!isset($_GET['v'])) {
                 "videoConvertedRuntime" => $videoDetails['videoConvertedRuntime'],
                 "hasComments" => $hasComments,
                 "hasRelated" => $hasRelated,
+                "useNativePlayer" => $useNativePlayer,
             ];
             if ($hasComments) {
                 $dataArray['videoComments'] = $commentsArray;
@@ -155,10 +168,7 @@ if (!isset($_GET['v'])) {
                 $dataArray['videoRelated'] = $relatedArray;
                 $dataArray['videoRelatedCount'] = sizeof($relatedArray);
             }
-            echo $twig->render(
-                "watch.html.twig",
-                $dataArray
-            );
+            echo $twig->render("watch.html.twig", $dataArray);
         }
     }
 }
