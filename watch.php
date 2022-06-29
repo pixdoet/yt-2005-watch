@@ -118,7 +118,7 @@ if (!isset($_GET['v'])) {
                 "watch2012.html.twig",
                 [
                     "videoId" => $id,
-                    "videoHtml" => $videoHtml,
+                    "videoHtml" => $videoLink,
                     "videoTags" => $tags,
                     "videoDescription" => $videoDetails['videoDescription'],
                     "videoTitle" => $videoDetails['videoTitle'],
@@ -134,7 +134,7 @@ if (!isset($_GET['v'])) {
         } else {
             $dataArray = [
                 "videoId" => $id,
-                "videoHtml" => $videoHtml,
+                "videoHtml" => $videoLink,
                 "videoTags" => $tags,
                 "videoDescription" => $videoDetails['videoDescription'],
                 "videoTitle" => $videoDetails['videoTitle'],
