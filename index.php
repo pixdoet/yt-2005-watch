@@ -16,7 +16,14 @@ function homepageFeed($number)
 {
     $response_object = requestBrowse("FEwhat_to_watch");
     $response = json_decode($response_object);
-    $feedobj = $response->contents->twoColumnBrowseResultsRenderer->tabs[0]->tabRenderer->content->richGridRenderer->contents[$number];
+    $feedobj = $response
+        ->contents
+        ->twoColumnBrowseResultsRenderer
+        ->tabs[0]
+        ->tabRenderer
+        ->content
+        ->richGridRenderer
+        ->contents[$number];
     //print_r($feedobj);
     return $feedobj;
 }

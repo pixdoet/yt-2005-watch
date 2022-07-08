@@ -1,5 +1,72 @@
 {% extends "base.html.twig" %}
 {% block pageContent %}
+	<script>
+		/**
+         * A simple video player.
+         * @author Jayden Seric
+         * @param  {Object}      options                  - Options object.
+         * @param  {HTMLElement} options.element          - Container.
+         * @param  {string}      [options.playClass=play] - Container class name when video is playing.
+         * @param  {string}      [options.muteClass=mute] - Container class name when video is mute.
+         */
+function VideoPlayer(options) {
+var self = this;
+// Options
+self.element = options.element;
+self.playClass = options.playClass || 'play';
+self.muteClass = options.muteClass || 'mute';
+// Derived
+self.video = this.element.querySelector('video');
+self.playToggleButton = this.element.querySelector('.play-toggle');
+self.muteToggleButton = this.element.querySelector('.mute-toggle');
+// Handle play
+self.video.addEventListener('play', function () {
+self.element.classList.add(self.playClass);
+});
+// Handle pause
+self.video.addEventListener('pause', function () {
+self.element.classList.remove(self.playClass);
+});
+// Handle mute
+self.video.addEventListener('volumechange', function () {
+if (self.video.muted) 
+self.element.classList.add(self.muteClass);
+ else 
+self.element.classList.remove(self.muteClass);
+
+
+
+});
+// Enable play toggle button
+self.playToggleButton.addEventListener('click', function () {
+self.togglePlay()
+});
+// Enable mute toggle button
+self.muteToggleButton.addEventListener('click', function () {
+self.toggleMute()
+});
+}
+
+/**
+         * Toggles video play/pause.
+         */
+VideoPlayer.prototype.togglePlay = function () {
+if (this.video.paused) 
+this.video.play();
+ else 
+this.video.pause();
+
+
+
+};
+
+/**
+         * Toggles video mute/unmute.
+         */
+VideoPlayer.prototype.toggleMute = function () {
+this.video.muted = !this.video.muted;
+};
+	</script>
 	<div style="padding: 0px 5px 0px 5px;">
 
 		<iframe id="invisible" name="invisible" src="" scrolling="yes" marginheight="0" marginwidth="0" width="0" height="0" frameborder="0"></iframe>
@@ -21,9 +88,26 @@
 						</div>
 
 						<div style="text-align: center; padding-bottom: 10px;">
-							<div id="flashcontent" class="videoPlayerHolder">
-								{{ videoHtml | striptags("<video><span><a>") | raw}}
-							</div>
+							{% if useNativePlayer %}
+								<div id="flashcontent" class="videoPlayerHolder">
+									{{ videoHtml | striptags("<video><span><a>") | raw}}
+								</div>
+							{% else %}
+								<figure class="video-player" id="flashcontent" class="videoPlayerHolder">
+									<div id="googlevideo-e">
+										<video id="googlevideo-holder" preload="none" poster="//i.ytimg.com/vi/{{ videoId }}/hqdefault.jpg" src="{{ videoSrc }}"></video>
+										<div class="controller">
+											<button class="play-toggle"></button>
+											<button class="bar"></button>
+											<button class="mute-toggle"></button>
+										</div>
+									</div>
+								</figure>
+								<script>
+									// Initialize video player
+new VideoPlayer({element: document.querySelector('.video-player')});
+								</script>
+							{% endif %}
 						</div>
 
 						<table width="425" cellspacing="0" cellpadding="0" border="0" align="center">
@@ -149,11 +233,12 @@
 													<tr valign="top">
 
 														<td>
-															<div class="moduleFrameBarTitle">Related Videos (1 of Many)</div>
+															<div class="moduleFrameBarTitle">Related Videos (1 of
+																{{ videoRelatedCount }})</div>
 														</td>
 														<td align="right">
 															<div style="font-size: 11px; margin-right: 5px;">
-																<a href="results.php?search={{ videoTItle }}" target="_parent">See All Results</a>
+																<a href="results.php?search={{ videoTitle }}" target="_parent">See All Results</a>
 															</div>
 														</td>
 													</tr>
@@ -192,6 +277,35 @@
 													</tbody>
 												</table>
 											</div>
+											{% for related in videoRelated %}
+												<div class="moduleFrameEntrySelected">
+													<table width="235" cellspacing="0" cellpadding="0" border="0">
+														<tbody>
+															<tr valign="top">
+																<td width="90">
+																	<a href="watch.php?v={{ related.compactVideoRenderer.videoId }}" class="bold" target="_parent"><img src="https://i.ytimg.com/vi/{{ related.compactVideoRenderer.videoId }}/hqdefault.jpg" class="moduleEntryThumb" width="80" height="60"></a>
+																</td>
+																<td>
+																	<div class="moduleFrameTitle">
+																		<a href="watch.php?v={{ related.compactVideoRenderer.videoId }}" target="_parent">{{ related.compactVideoRenderer.title.simpleText }}</a>
+																	</div>
+																	<div class="moduleFrameDetails">
+																		by
+																		<a href="profile.php?id={{ related.compactVideoRenderer.shortBylineText.runs[0].browseEndpoint.browseId }}" target="_parent">{{ related.compactVideoRenderer.shortBylineText.runs[0].text }}</a>
+																	</div>
+																	<div class="moduleFrameDetails">
+																		Runtime:
+																		{{ related.compactVideoRenderer.lengthText.simpleText }}<br>
+																		Views:
+																		{{ related.compactVideoRenderer.viewCountText.simpleText }}<br>
+																		Comments: 1
+																	</div>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											{% endfor %}
 										</td>
 									</td>
 									<td><img src="yts/imgbin/pixel.gif" width="5" height="1"></td>
@@ -204,7 +318,7 @@
 							</tbody>
 						</table>
 						<div style="font-weight: bold; color: #333; margin: 10px 0px 5px 0px;">Related tags:</div>
-						{% for tag in tags %}
+						{% for tag in videoTags %}
 							<div style="padding: 0px 0px 5px 0px; color: #999;">»<a href="results.php?search={{ tag }}" target="_blank">{{ tag }}</a>
 							</div>
 						{% endfor %}
@@ -213,4 +327,56 @@
 			</tbody>
 		</table>
 	</div>
-</td></tr></tbody></table>{% endblock %}
+</td></tr></tbody></table><style>#flashcontent.video-player {
+	width: 425px;
+	height: auto;
+}
+#googlevideo-holder {
+	width: 425px;
+	height: auto;
+}
+.controller {
+	height: 16px;
+	background-image: linear-gradient(#d9d9d9, #fff);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border: 1px solid #000;
+	border-radius: 4px;
+	margin: 3px;
+}
+.controller .bar {
+	background-color: #2c2c2c;
+	border: 0;
+	height: 3.3px;
+	width: 100%;
+}
+.controller .play-toggle {
+	background-image: url("yts/imgbin/player/play.png");
+	background-color: transparent;
+	background-position: center;
+	border: 0;
+	margin-left: 4px;
+	margin-right: 2px;
+	height: 14px;
+	width: 14px;
+}
+
+.play .controller .play-toggle {
+	background-image: url("yts/imgbin/player/pause.png");
+}
+
+.controller .mute-toggle {
+	background-image: url("yts/imgbin/player/unmuted.png");
+	background-color: transparent;
+	background-position: center;
+	border: 0;
+	margin-left: 2px;
+	margin-right: 4px;
+	height: 14px;
+	width: 14px;
+}
+
+.mute .controller .mute-toggle {
+	background-image: url("yts/imgbin/player/muted.png");
+}</style>{% endblock %}

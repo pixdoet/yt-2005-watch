@@ -19,3 +19,6 @@ tests/*
 
 # rehike redirect for rehike.hiew.me
 rehike/*
+
+# youtubei dev tools
+tools/*
