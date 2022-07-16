@@ -1,6 +1,5 @@
 <?php
 
-
 include("initial.php");
 function fetchComment($videoId, $continuation)
 {
