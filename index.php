@@ -27,6 +27,32 @@ function homepageFeed($number)
     //print_r($feedobj);
     return $feedobj;
 }
+for ($i = 0; $i < 8; $i++) {
+    // check if box is video 
+    $obj = homepageFeed($i);
+    if (!isset($obj->richItemRenderer->content->videoRenderer)) {
+        $obj = homepageFeed($i += 1);
+    } else {
+        // create details array
+        $obj_accessor = $obj->richItemRenderer->content->videoRenderer;
+        $contents = array(
+            "videoTitle" => $obj_accessor->title->runs[0]->text,
+            "videoThumbnail" => $obj_accessor->thumbnail->thumbnails[0]->url,
+            "videoId" => $obj_accessor->videoId,
+            "videoDescription" => "<i>No description</i>",
+            // "videoDescription" => $obj_accessor->descriptionSnippet->runs[0]->text,
+            "videoRuntime" => $obj_accessor->lengthText->simpleText,
+            "videoViewcount" => $obj_accessor->viewCountText->simpleText,
+            "videoAuthor" => $obj_accessor->shortBylineText->runs[0]->text,
+            "videoUploadDate" => $obj_accessor->publishedTimeText->simpleText,
+            "authorChannelId" => $obj_accessor->shortBylineText->runs[0]->navigationEndpoint->browseEndpoint->browseId,
+        );
+        // check for videos without description
+        if (isset($obj_accessor->descriptionSnippet->runs[0]->text)) {
+            $obj_details["videoDescription"] = $obj_accessor->descriptionSnippet->runs[0]->text;
+        }
+    }
+}
 // ok we done now to the html section below...
 
 ?>

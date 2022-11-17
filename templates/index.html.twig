@@ -79,13 +79,13 @@
 													<tbody>
 														<tr valign="top">
 															<td>
-																<a href="watch.php?v=<?php echo $obj_details['videoId']; ?>"><img src="<?php echo $obj_details['videoThumbnail']; ?>" class="moduleEntryThumb" width="120" height="90"></a>
+																<a href="watch.php?v={{ content.videoId }}"><img src="{{ content.videoThumbnail }}" class="moduleEntryThumb" width="120" height="90"></a>
 															</td>
 															<td width="100%">
 																<div class="moduleEntryTitle">
-																	<a href="watch.php?v=<?php echo $obj_details['videoId'] ?>"><?php echo $obj_details['videoTitle']; ?></a>
+																	<a href="watch.php?v={{ content.videoId }}">{{ content.videoTitle }}</a>
 																</div>
-																<div class="moduleEntryDescription"><?php echo $obj_details['videoDescription']; ?></div>
+																<div class="moduleEntryDescription">{{ content.videoDescription }}</div>
 																<div class="moduleEntryTags">
 																	Tags //
 																	<a href="results.php?search=Martinez">Martinez</a>
@@ -98,9 +98,9 @@
 																	:
 																</div>
 																<div class="moduleEntryDetails">Added:
-																	<?php echo $obj_details['videoUploadDate']; ?>
+																	{{ content.videoUploadDate }}
 																	by
-																	<a href="profile.php?id=<?php echo $obj_details['authorChannelId']; ?>"><?php echo $obj_details['videoAuthor']; ?></a>
+																	<a href="profile.php?id={{ content.authorChannelId }}"><?php echo $obj_details['videoAuthor']; ?></a>
 																</div>
 																<div class="moduleEntryDetails">Views:
 																	<?php echo $obj_details['videoViewcount']; ?>
