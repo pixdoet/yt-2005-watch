@@ -166,7 +166,7 @@ if (!isset($_GET['v'])) {
             }
             if ($hasRelated) {
                 $dataArray['videoRelated'] = $relatedArray;
-                $dataArray['videoRelatedCount'] = sizeof($relatedArray);
+                $dataArray['videoRelatedCount'] = sizeof($relatedArray) - 1;
             }
             echo $twig->render("watch.html.twig", $dataArray);
         }
