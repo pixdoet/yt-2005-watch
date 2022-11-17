@@ -100,12 +100,36 @@ if (!isset($_GET['v'])) {
             $hasComments = false;
         }
 
+        // get related videos...
+        $relatedResponse = json_decode(fetchInitialNext($id));
+        if (isset($relatedResponse->contents->twoColumnWatchNextResults->secondaryResults->secondaryResults->results)) {
+            $hasRelated = true;
+            $relatedArray = $relatedResponse
+                ->contents
+                ->twoColumnWatchNextResults
+                ->secondaryResults
+                ->secondaryResults
+                ->results;
+        } else {
+            $hasRelated = false;
+        }
+        // add check for native player GET param
+        if (isset($_GET['useNative'])) {
+            if ($_GET['useNative']) {
+                $useNativePlayer = true;
+            } else {
+                $useNativePlayer = false;
+            }
+        } else {
+            $useNativePlayer = false;
+        }
         if (isset($_GET['2012']) && $_GET['2012'] == "1") {
             echo $twig->render(
                 "watch2012.html.twig",
                 [
                     "videoId" => $id,
                     "videoHtml" => $videoHtml,
+                    "videoSrc" => $videoLink,
                     "videoTags" => $tags,
                     "videoDescription" => $videoDetails['videoDescription'],
                     "videoTitle" => $videoDetails['videoTitle'],
@@ -122,6 +146,7 @@ if (!isset($_GET['v'])) {
             $dataArray = [
                 "videoId" => $id,
                 "videoHtml" => $videoHtml,
+                "videoSrc" => $videoLink,
                 "videoTags" => $tags,
                 "videoDescription" => $videoDetails['videoDescription'],
                 "videoTitle" => $videoDetails['videoTitle'],
@@ -133,14 +158,17 @@ if (!isset($_GET['v'])) {
                 "authorChannelId" => $videoDetails['authorChannelId'],
                 "videoConvertedRuntime" => $videoDetails['videoConvertedRuntime'],
                 "hasComments" => $hasComments,
+                "hasRelated" => $hasRelated,
+                "useNativePlayer" => $useNativePlayer,
             ];
             if ($hasComments) {
                 $dataArray['videoComments'] = $commentsArray;
             }
-            echo $twig->render(
-                "watch.html.twig",
-                $dataArray
-            );
+            if ($hasRelated) {
+                $dataArray['videoRelated'] = $relatedArray;
+                $dataArray['videoRelatedCount'] = sizeof($relatedArray) - 1;
+            }
+            echo $twig->render("watch.html.twig", $dataArray);
         }
     }
 }
