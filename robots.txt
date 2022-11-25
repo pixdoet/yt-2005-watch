@@ -1,0 +1,3 @@
+# spider man mad when i spray water on his hands
+User-agent: *
+Allow: *
