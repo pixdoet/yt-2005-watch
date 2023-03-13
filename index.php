@@ -12,10 +12,8 @@ include("includes/youtubei/browse.php");
 $response_object = requestBrowse("FEwhat_to_watch");
 
 $response = json_decode($response_object);
-function homepageFeed($number)
+function homepageFeed($number, $response)
 {
-    $response_object = requestBrowse("FEwhat_to_watch");
-    $response = json_decode($response_object);
     $feedobj = $response
         ->contents
         ->twoColumnBrowseResultsRenderer
@@ -27,11 +25,11 @@ function homepageFeed($number)
     //print_r($feedobj);
     return $feedobj;
 }
-for ($i = 0; $i < 8; $i++) {
+for ($i = 0; $i < 10; $i++) {
     // check if box is video 
-    $obj = homepageFeed($i);
+    $obj = homepageFeed($i, $response);
     if (!isset($obj->richItemRenderer->content->videoRenderer)) {
-        $obj = homepageFeed($i += 1);
+        $obj = homepageFeed($i += 1, $response);
     } else {
         // create details array
         $obj_accessor = $obj->richItemRenderer->content->videoRenderer;
@@ -144,9 +142,9 @@ for ($i = 0; $i < 8; $i++) {
                                                         <?php
                                                         for ($i = 0; $i < 8; $i++) {
                                                             // check if box is video 
-                                                            $obj = homepageFeed($i);
+                                                            $obj = homepageFeed($i, $response);
                                                             if (!isset($obj->richItemRenderer->content->videoRenderer)) {
-                                                                $obj = homepageFeed($i += 1);
+                                                                $obj = homepageFeed($i += 1, $response);
                                                             } else {
                                                                 // create details array
                                                                 $obj_accessor = $obj->richItemRenderer->content->videoRenderer;

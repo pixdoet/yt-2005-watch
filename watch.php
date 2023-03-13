@@ -113,6 +113,15 @@ if (!isset($_GET['v'])) {
         } else {
             $hasRelated = false;
         }
+        // check for native player cookie
+        if (isset($_COOKIE['useNative'])) {
+            $nativeCookie = $_COOKIE['useNative'];
+            if ($nativeCookie) {
+                $useNativePlayer = true;
+            } else {
+                $useNativePlayer = false;
+            }
+        }
         // add check for native player GET param
         if (isset($_GET['useNative'])) {
             if ($_GET['useNative']) {
