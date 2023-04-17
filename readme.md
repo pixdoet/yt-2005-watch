@@ -24,4 +24,4 @@ Apache 2.0
 
 ### Publicly maintained instances
 Stable: http://cleantalk.great-site.net  
-Dev: https://rehike.hiew.me
+~Dev: https://rehike.hiew.me~ site abandoned & domain expired
