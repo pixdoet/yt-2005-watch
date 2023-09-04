@@ -3,7 +3,9 @@
 $resultsCount = 10; // how many results you want in the search page
 
 /* INNERTUBE REQUESTS SPECIFIC STUFF */
-define("ANDROIDTUBE_REQUEST_CLIENT_VERSION",  "16.12.11"); // only used in player
+define("ANDROIDTUBE_REQUEST_CLIENT_VERSION",  "17.31.35"); // only used in player
+define("ANDROIDTUBE_REQUEST_USER_AGENT", "com.google.android.youtube/17.31.35 (Linux; U; Android 11) gzip");
+define("ANDROIDTUBE_SDK_VERSION", 30);
 
 define("INNERTUBE_CONTEXT_CLIENT_VERSION", "2.20220629.00.01");
 

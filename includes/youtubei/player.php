@@ -64,6 +64,7 @@ function requestVideoSrc($videoId)
                     'hl' => 'en',
                     'clientName' => 'ANDROID',
                     'clientVersion' => ANDROIDTUBE_REQUEST_CLIENT_VERSION,
+                    'androidSdkVersion' => ANDROIDTUBE_SDK_VERSION,
                     'mainAppWebInfo' =>
                     array(
                         'graftUrl' => '/watch?v=' . $videoId,
@@ -81,7 +82,7 @@ function requestVideoSrc($videoId)
         "X-Origin: https://www.youtube.com",
     ));
     curl_setopt($ch, CURLOPT_POSTFIELDS, $req_arr);
-    curl_setopt($ch, CURLOPT_USERAGENT, INNERTUBE_REQUEST_USER_AGENT);
+    curl_setopt($ch, CURLOPT_USERAGENT, ANDROIDTUBE_REQUEST_USER_AGENT);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_URL, "https://www.youtube.com/youtubei/v1/player?key=" . INNERTUBE_REQUEST_API_KEY);
 
