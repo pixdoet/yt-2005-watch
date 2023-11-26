@@ -71,6 +71,7 @@ if (!isset($_GET['v'])) {
         // video source file
         if (requestVideoSrc($id)) {
             $videoLink = requestVideoSrc($id);
+            echo ($videoLink);
             $videoHtml = sprintf('<video controls class="video-player googlevideo-player" style="width: 427px; height: margin:center;" src="%s"></video>', $videoLink);
         } else {
             $videoHtml = sprintf('<span class="noVideoError">Video unavailable for playback. <a href="https://youtube.com/watch?v=%s">Watch on YouTube</a></span>', $id);
@@ -113,6 +114,18 @@ if (!isset($_GET['v'])) {
         } else {
             $hasRelated = false;
         }
+
+        // add check for native player GET param
+        if (isset($_GET['useNative'])) {
+            if ($_GET['useNative'] == true) {
+                setcookie("useNative", true, time() + (86400 * 30), "/");
+                $useNativePlayer = true;
+            } elseif ($_GET['useNative'] == false) {
+                setcookie("useNative", false, time() + (86400 * 30), "/");
+                $useNativePlayer = false;
+            }
+        } // else fallback to cookie
+
         // check for native player cookie
         if (isset($_COOKIE['useNative'])) {
             $nativeCookie = $_COOKIE['useNative'];
@@ -122,16 +135,8 @@ if (!isset($_GET['v'])) {
                 $useNativePlayer = false;
             }
         }
-        // add check for native player GET param
-        if (isset($_GET['useNative'])) {
-            if ($_GET['useNative']) {
-                $useNativePlayer = true;
-            } else {
-                $useNativePlayer = false;
-            }
-        } else {
-            $useNativePlayer = false;
-        }
+
+        // 2012 easter egg
         if (isset($_GET['2012']) && $_GET['2012'] == "1") {
             echo $twig->render(
                 "watch2012.html.twig",
