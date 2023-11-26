@@ -16,3 +16,4 @@ define("INNERTUBE_REQUEST_USER_AGENT", "Mozilla/5.0 (Macintosh; Intel Mac OS X 1
 
 $sapisidhash = "";
 $cookiefile = "../cookies.txt";
+$debugCode = "7c8af1";

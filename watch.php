@@ -10,8 +10,19 @@ use Twig\Loader\FilesystemLoader;
 $loader = new FilesystemLoader(__DIR__ . '/templates');
 $twig = new Environment($loader);
 
+include("includes/youtubei/details.php");
 include("includes/youtubei/player.php");
 include("includes/youtubei/comments.php");
+include_once("includes/config.inc.php");
+
+// debug flag
+if (isset(($_GET['debug']))) {
+    if ($_GET['debug'] == $debugCode) {
+        $debug = true;
+    }
+} else {
+    $debug = false;
+}
 
 if (!isset($_GET['v'])) {
     echo $twig->render(
@@ -24,11 +35,12 @@ if (!isset($_GET['v'])) {
     $id = $_GET['v'];
 
     // request player :hsuk:
-    $response_object = requestPlayer($id);
+    $response_object = requestDetails($id);
     $mainResponseObject = json_decode($response_object);
+    $playerObject = json_decode(requestPlayer($id));
 
     // check if video exists
-    if (!isset($mainResponseObject->videoDetails->title)) {
+    if (!isset($mainResponseObject->contents->twoColumnWatchNextResults->results->results->contents[0]->videoPrimaryInfoRenderer->title->runs[0]->text)) {
         echo $twig->render(
             "novideo.html.twig",
             [
@@ -37,26 +49,26 @@ if (!isset($_GET['v'])) {
         );
     } else {
         $videoDetails = array(
-            "videoTitle" => $mainResponseObject->videoDetails->title,
+            "videoTitle" => $mainResponseObject->contents->twoColumnWatchNextResults->results->results->contents[0]->videoPrimaryInfoRenderer->title->runs[0]->text,
             "videoDescription" => '<span class="redtext"><i>No description</i></span>', // due for modification later
-            "videoLengthInSeconds" => $mainResponseObject->videoDetails->lengthSeconds,
-            "videoViews" => $mainResponseObject->videoDetails->viewCount,
-            "videoAuthor" => $mainResponseObject->microformat->playerMicroformatRenderer->ownerChannelName,
-            "videoUploadDate" => $mainResponseObject->microformat->playerMicroformatRenderer->uploadDate,
-            "videoRuntime" => $mainResponseObject->microformat->playerMicroformatRenderer->lengthSeconds,
-            "videoThumbnail" => $mainResponseObject->microformat->playerMicroformatRenderer->thumbnail->thumbnails[0]->url,
-            "authorChannelId" => $mainResponseObject->microformat->playerMicroformatRenderer->externalChannelId,
-            "videoConvertedRuntime" => gmdate("i:s", $mainResponseObject->microformat->playerMicroformatRenderer->lengthSeconds),
+            "videoLengthInSeconds" => $playerObject->videoDetails->lengthSeconds,
+            "videoViews" => $mainResponseObject->contents->twoColumnWatchNextResults->results->results->contents[0]->videoPrimaryInfoRenderer->viewCount->videoViewCountRenderer->viewCount->simpleText,
+            "videoAuthor" => $mainResponseObject->contents->twoColumnWatchNextResults->results->results->contents[1]->videoSecondaryInfoRenderer->owner->videoOwnerRenderer->title->runs[0]->text,
+            "videoUploadDate" => $mainResponseObject->contents->twoColumnWatchNextResults->results->results->contents[0]->videoPrimaryInfoRenderer->dateText->simpleText,
+            "videoRuntime" => $playerObject->microformat->playerMicroformatRenderer->lengthSeconds,
+            "videoThumbnail" => $playerObject->contents->twoColumnWatchNextResults->results->results->contents[0]->videoPrimaryInfoRenderer->title->runs[0]->text,
+            "authorChannelId" => $mainResponseObject->contents->twoColumnWatchNextResults->results->results->contents[1]->videoSecondaryInfoRenderer->owner->videoOwnerRenderer->title->runs[0]->navigationEndpoint->browseEndpoint->browseId,
+            "videoConvertedRuntime" => gmdate("i:s", $playerObject->microformat->playerMicroformatRenderer->lengthSeconds),
         );
 
         // replace description text if description exists
-        if (isset($mainResponseObject->microformat->playerMicroformatRenderer->description->simpleText)) {
-            $videoDetails['videoDescription'] = $mainResponseObject->microformat->playerMicroformatRenderer->description->simpleText;
+        if (isset($mainResponseObject->contents->twoColumnWatchNextResults->results->results->contents[1]->videoSecondaryInfoRenderer->attributedDescription->content)) {
+            $videoDetails['videoDescription'] = $mainResponseObject->contents->twoColumnWatchNextResults->results->results->contents[1]->videoSecondaryInfoRenderer->attributedDescription->content;
         }
 
         // get video tags(annoying)
-        if (isset($mainResponseObject->videoDetails->keywords)) {
-            $tagarr = $mainResponseObject->videoDetails->keywords;
+        if (isset($playerObject->videoDetails->keywords)) {
+            $tagarr = $playerObject->videoDetails->keywords;
             $tagcount = sizeof($tagarr);
             if ($tagcount >= 1) {
                 $tags = $tagarr;
@@ -71,8 +83,10 @@ if (!isset($_GET['v'])) {
         // video source file
         if (requestVideoSrc($id)) {
             $videoLink = requestVideoSrc($id);
-            echo ($videoLink);
             $videoHtml = sprintf('<video controls class="video-player googlevideo-player" style="width: 427px; height: margin:center;" src="%s"></video>', $videoLink);
+            if ($debug) {
+                echo $videoLink;
+            }
         } else {
             $videoHtml = sprintf('<span class="noVideoError">Video unavailable for playback. <a href="https://youtube.com/watch?v=%s">Watch on YouTube</a></span>', $id);
         }
@@ -95,6 +109,7 @@ if (!isset($_GET['v'])) {
                 ->token;
             // fetch the comments
             $mainResponseContext = json_decode(fetchComment($id, $continuation));
+            $commentCount = $mainResponseObject->contents->twoColumnWatchNextResults->results->results->contents[2]->itemSectionRenderer->contents[0]->commentsEntryPointHeaderRenderer->commentCount->simpleText;
             $commentsArray = $mainResponseContext->onResponseReceivedEndpoints[1]->reloadContinuationItemsCommand->continuationItems;
             // start writing to twiG
         } else {
@@ -134,6 +149,8 @@ if (!isset($_GET['v'])) {
             } else {
                 $useNativePlayer = false;
             }
+        } else {
+            $useNativePlayer = true;
         }
 
         // 2012 easter egg
@@ -177,6 +194,7 @@ if (!isset($_GET['v'])) {
             ];
             if ($hasComments) {
                 $dataArray['videoComments'] = $commentsArray;
+                $dataArray['commentCount'] = $commentCount;
             }
             if ($hasRelated) {
                 $dataArray['videoRelated'] = $relatedArray;
