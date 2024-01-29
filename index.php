@@ -4,7 +4,7 @@ if (isset($_GET['v'])) {
     header("Location: watch.php?v=" . $_GET['v']);
     die();
 }
-
+include_once("includes/config.inc.php");
 include("includes/youtubei/browse.php");
 
 // form a youtubei request to /youtubei/v1/browse, then get the first 10 results
