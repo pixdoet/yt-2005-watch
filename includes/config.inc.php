@@ -12,8 +12,21 @@ define("INNERTUBE_CONTEXT_CLIENT_VERSION", "2.20220629.00.01");
 define("INNERTUBE_REQUEST_API_KEY", "AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8");
 define("INNERTUBE_REQUEST_USER_AGENT", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:100.0) Gecko/20100101 Firefox/100.0");
 
+/* INTERNAL (DO NOT LEAK) */
+/* Files on Github for placeholder only */
+$debugCode = "7c8af1";
+$shutdown = true;
+$accessCode = "zamning";
+
+/* DRM */
+if ($shutdown)
+{
+    if !(isset($_GET['accessCode']) && $_GET['accessCode'] == $accessCode){
+        header("Location: https://pixdoet.github.io/yt2005-shutdown.html");
+    }
+}
+
 /* CURRENTLY UNUSED STUFF */
 
 $sapisidhash = "";
 $cookiefile = "../cookies.txt";
-$debugCode = "7c8af1";
